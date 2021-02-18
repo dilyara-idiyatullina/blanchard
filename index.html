@@ -10,12 +10,16 @@
   <link rel="stylesheet" type="text/css" href="https://unpkg.com/swiper/swiper-bundle.min.css">  
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
   
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU" type="text/javascript"></script>
-  <script src="/js/script.js"></script>
+  <script src="/js/just-validate.min.js"></script>
+  <script src="/js/inputmask.min.js"></script>
   <script src="/js/github-focus-visible.js"></script>
+  <script src="/js/script.js"></script>
 
   <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -50,41 +54,177 @@
           </li>
         </ul>
       </nav>     
-      <a href="#" aria-label="Войти в личный кабинет." class="log-in">Войти</a>
+      <a href="#" aria-label="Войти в личный кабинет." class="log-in">
+        <svg class="log-in__icon">
+          <path d="M5.12056 9.09278L6.13889 10.1111L9.75 6.5L6.13889 2.88889L5.12056 3.90722L6.98389 5.77778H0V7.22222H6.98389L5.12056 9.09278ZM11.5556 0H1.44444C0.642778 0 0 0.65 0 1.44444V4.33333H1.44444V1.44444H11.5556V11.5556H1.44444V8.66667H0V11.5556C0 12.35 0.642778 13 1.44444 13H11.5556C12.35 13 13 12.35 13 11.5556V1.44444C13 0.65 12.35 0 11.5556 0Z" fill="white"/>
+        </svg>
+        Войти
+      </a>
     </div>
   </header>
   <header class="header-sub">
     <div class="container header-sub__container">
       <ul class="sub-menu">
         <li class="sub-menu__item">
-          <a href="#" class="sub-menu__link">Реализм</a>
+          <a href="#" class="sub-menu__link" data-ddlink="real">
+            Реализм
+            <svg class="sub-menu__icon--arrow-down" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="sub-menu__path" d="M11 5L6 10L0.999998 5"/>
+            </svg>
+          </a>
+          <div class="drop-down-menu">
+            <div class="drop-down-menu__content" data-ddmenu="real">
+              <ul id="customScrollReal" class="drop-down-menu__list">
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img1" tabindex="-1">Тинторетто</a>
+                </li>
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img2" tabindex="-1">Фридрих</a>
+                </li>
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img3" tabindex="-1">Леонардо</a>
+                </li>
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img1" tabindex="-1">Верроккьо</a>
+                </li>
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img2" tabindex="-1">Тинторетто</a>
+                </li>
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img3" tabindex="-1">Фридрих</a>
+                </li>
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img1" tabindex="-1">Леонардо</a>
+                </li>
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img2" tabindex="-1">Верроккьо</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </li>
         <li class="sub-menu__item">
-          <a href="#" class="sub-menu__link">Импрессионизм</a>
+          <a href="#" class="sub-menu__link" data-ddlink="impr">
+            Импрессионизм
+            <svg class="sub-menu__icon--arrow-down" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 5L6 10L0.999998 5"/>
+            </svg>            
+          </a>
+          <div class="drop-down-menu">
+            <div class="drop-down-menu__content" data-ddmenu="impr">
+              <ul id="customScrollImpr" class="drop-down-menu__list">
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img1" tabindex="-1">Тинторетто</a>
+                </li>
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img2" tabindex="-1">Фридрих</a>
+                </li>
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img3" tabindex="-1">Леонардо</a>
+                </li>
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img1" tabindex="-1">Верроккьо</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </li>
         <li class="sub-menu__item">
-          <a href="#" class="sub-menu__link">Постимпрессионизм</a>
+          <a href="#" class="sub-menu__link" data-ddlink="postimpr">
+            Постимпрессионизм
+            <svg class="sub-menu__icon--arrow-down" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 5L6 10L0.999998 5"/>
+            </svg>            
+          </a>
+          <div class="drop-down-menu">
+            <div class="drop-down-menu__content" data-ddmenu="postimpr">
+              <ul id="customScrollPostimpr" class="drop-down-menu__list">
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img1" tabindex="-1">Тинторетто</a>
+                </li>
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img2" tabindex="-1">Фридрих</a>
+                </li>
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img3" tabindex="-1">Леонардо</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </li>
         <li class="sub-menu__item">
-          <a href="#" class="sub-menu__link">Авангард</a>
+          <a href="#" class="sub-menu__link" data-ddlink="avang">
+            Авангард
+            <svg class="sub-menu__icon--arrow-down" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 5L6 10L0.999998 5"/>
+            </svg>            
+          </a>
+          <div class="drop-down-menu">
+            <div class="drop-down-menu__content" data-ddmenu="avang">
+              <ul id="customScrollAvang" class="drop-down-menu__list">
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img1" tabindex="-1">Тинторетто</a>
+                </li>
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img2" tabindex="-1">Фридрих</a>
+                </li>
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img3" tabindex="-1">Леонардо</a>
+                </li>
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img1" tabindex="-1">Верроккьо</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </li>
         <li class="sub-menu__item">
-          <a href="#" class="sub-menu__link">Футуризм</a>
+          <a href="#" class="sub-menu__link" data-ddlink="futur">
+            Футуризм
+            <svg class="sub-menu__icon--arrow-down" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 5L6 10L0.999998 5" stroke="white"/>
+            </svg>            
+          </a>
+          <div class="drop-down-menu">
+            <div class="drop-down-menu__content" data-ddmenu="futur">
+              <ul id="customScrollFutur" class="drop-down-menu__list">
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img1" tabindex="-1">Тинторетто</a>
+                </li>
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img2" tabindex="-1">Фридрих</a>
+                </li>
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img3" tabindex="-1">Леонардо</a>
+                </li>
+                <li class="drop-down-menu__item">
+                  <a href="#" class="drop-down-menu__link drop-down-menu__link--img1" tabindex="-1">Верроккьо</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </li>
-      </ul>        
+      </ul>    
       <form action="https://jsonplaceholder.typicode.com/posts" method="POST" class="search-form">
-        <input required type="text" name="search" placeholder="Поиск по сайту" class="input-reset search-input" aria-label="Поиск по сайту.">
+        <svg tabindex="0" class="search-form__icon" width="23" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="6.8678" height="1.71695" transform="matrix(-0.718931 0.695081 0.718931 0.695081 4.9375 15.6534)" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0969 18C7.53041 18 3.99692 14.3229 3.99692 10C3.99692 5.67715 7.53041 2 12.0969 2C16.6634 2 20.1969 5.67715 20.1969 10C20.1969 14.3229 16.6634 18 12.0969 18ZM12.0969 20C6.57408 20 2.09692 15.5228 2.09692 10C2.09692 4.47715 6.57408 0 12.0969 0C17.6198 0 22.0969 4.47715 22.0969 10C22.0969 15.5228 17.6198 20 12.0969 20Z" fill="white"/>
+        </svg>
+        <input required type="text" name="search" placeholder="Поиск по сайту" class="input-reset search-input" aria-label="Поиск по сайту." autocomplete="off">
       </form>
     </div>
   </header>
   <main>
     <section class="hero">
-      <div class="swiper-container hero__slider">
+      <!-- <div class="swiper-container hero__slider">
         <div class="swiper-wrapper">
           <div class="swiper-slide" style="background-image: url(/img/birmingham-museums-hero1.jpg);"></div>
           <div class="swiper-slide" style="background-image: url(/img/birmingham-museums-hero2.jpg);"></div>
           <div class="swiper-slide" style="background-image: url(/img/birmingham-museums-hero3.jpg);"></div>
         </div>
+      </div> -->
+      <div class="hero__background">
+        <img src="/img/birmingham-museums-hero1.jpg" alt="фоновое изображение">
       </div>
       <div class="container hero__container">
         <div class="hero__content">
@@ -123,9 +263,19 @@
         </div>
         <div class="gallery__right-content gallery__slider-container">
           <div class="switch gallery__switch">
-            <a href="#" class="pages__switch gallery__switch--prev" aria-label="Предыдущая страница."></a>
+            <a href="#" class="pages__switch gallery__switch--prev" aria-label="Предыдущая страница.">
+              <svg class="pages__switch--icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 1C22.732 1 29 7.26801 29 15C29 22.732 22.732 29 15 29C7.26801 29 1 22.732 1 15C1 7.26801 7.26802 0.999999 15 1Z" fill="#666666"/>
+                <path d="M16 20L11 15L16 10" stroke="white"/>
+              </svg>              
+            </a>
             <span class="gallery__pages"></span>
-            <a href="#" class="pages__switch gallery__switch--next" aria-label="Следующая страница."></a>
+            <a href="#" class="pages__switch gallery__switch--next" aria-label="Следующая страница.">
+              <svg class="pages__switch--icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 1C22.732 1 29 7.26801 29 15C29 22.732 22.732 29 15 29C7.26801 29 1 22.732 1 15C1 7.26801 7.26802 0.999999 15 1Z" fill="#666666"/>
+                <path d="M14 20L19 15L14 10" stroke="white"/>
+              </svg>
+            </a>
           </div>
           <div class="swiper-container gallery__slider">
             <div class="swiper-wrapper">
@@ -233,7 +383,7 @@
           <ul class="flags-list catalog__flags-list">
             <li class="flags-list__item"><a href="#" data-path="france" class="flags-list__link flags-list__link--france" aria-label="Франция."></a></li>
             <li class="flags-list__item"><a href="#" data-path="germany" class="flags-list__link flags-list__link--germany" aria-label="Германия."></a></li>
-            <li class="flags-list__item"><a href="#" data-path="italy" class="flags-list__link flags-list__link--italy" aria-label="Италия."></a></li>
+            <li class="flags-list__item"><a href="#" data-path="italy" class="flags-list__link flags-list__link--italy flags-list__link--active" aria-label="Италия."></a></li>
             <li class="flags-list__item"><a href="#" data-path="russia" class="flags-list__link flags-list__link--russia" aria-label="Россия."></a></li>
             <li class="flags-list__item"><a href="#" data-path="belgium" class="flags-list__link flags-list__link--belgium" aria-label="Бульгия."></a></li>
           </ul>
@@ -250,25 +400,81 @@
             </div>
           </div>    
           <div class="dates catalog__right-content" id="accordion">
-            <h3><span class="dates-item-link">С 1400 по 1499 гг.</span><span class="arrow"></span></h3>
+            <!-- <h3><span class="dates-item-link">С 1400 по 1499 гг.</span><span class="arrow"></span></h3> -->
+            <h3 class="dates-item-link"><span >С 1400 по 1499 гг.</span>
+              <span class="arrow">
+                <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M49 25C49 38.2548 38.2548 49 25 49C11.7452 49 1 38.2548 1 25C1 11.7452 11.7452 1 25 1C38.2548 1 49 11.7452 49 25Z" fill="#ECECEC"/>
+                  <path d="M33.3333 23.3333L25 31.6667L16.6667 23.3333" stroke="black"/>
+                </svg>
+              </span>            
+            </h3>
             <ul class="dates__list" data-century="15">
             </ul>
-            <h3><span class="dates-item-link">С 1500 по 1599 гг.</span><span class="arrow"></span></h3>
+            <!-- <h3><span class="dates-item-link">С 1500 по 1599 гг.</span><span class="arrow"></span></h3> -->
+            <h3 class="dates-item-link"><span >С 1500 по 1599 гг.</span>
+              <span class="arrow">
+                <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M49 25C49 38.2548 38.2548 49 25 49C11.7452 49 1 38.2548 1 25C1 11.7452 11.7452 1 25 1C38.2548 1 49 11.7452 49 25Z" fill="#ECECEC"/>
+                  <path d="M33.3333 23.3333L25 31.6667L16.6667 23.3333" stroke="black"/>
+                </svg>
+              </span>            
+            </h3>            
             <ul class="dates__list" data-century="16">
             </ul>
-            <h3><span class="dates-item-link">С 1600 по 1699 гг.</span><span class="arrow"></span></h3>
+            <!-- <h3><span class="dates-item-link">С 1600 по 1699 гг.</span><span class="arrow"></span></h3> -->
+            <h3 class="dates-item-link"><span >С 1600 по 1699 гг.</span>
+              <span class="arrow">
+                <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M49 25C49 38.2548 38.2548 49 25 49C11.7452 49 1 38.2548 1 25C1 11.7452 11.7452 1 25 1C38.2548 1 49 11.7452 49 25Z" fill="#ECECEC"/>
+                  <path d="M33.3333 23.3333L25 31.6667L16.6667 23.3333" stroke="black"/>
+                </svg>
+              </span>            
+            </h3>
             <ul class="dates__list" data-century="17">
             </ul>
-            <h3><span class="dates-item-link">С 1700 по 1799 гг.</span><span class="arrow"></span></h3>
+            <!-- <h3><span class="dates-item-link">С 1700 по 1799 гг.</span><span class="arrow"></span></h3> -->
+            <h3 class="dates-item-link"><span >С 1700 по 1799 гг.</span>
+              <span class="arrow">
+                <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M49 25C49 38.2548 38.2548 49 25 49C11.7452 49 1 38.2548 1 25C1 11.7452 11.7452 1 25 1C38.2548 1 49 11.7452 49 25Z" fill="#ECECEC"/>
+                  <path d="M33.3333 23.3333L25 31.6667L16.6667 23.3333" stroke="black"/>
+                </svg>
+              </span>            
+            </h3>
             <ul class="dates__list" data-century="18">
             </ul>
-            <h3><span class="dates-item-link">С 1800 по 1899 гг.</span><span class="arrow"></span></h3>
+            <!-- <h3><span class="dates-item-link">С 1800 по 1899 гг.</span><span class="arrow"></span></h3> -->
+            <h3 class="dates-item-link"><span >С 1800 по 1899 гг.</span>
+              <span class="arrow">
+                <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M49 25C49 38.2548 38.2548 49 25 49C11.7452 49 1 38.2548 1 25C1 11.7452 11.7452 1 25 1C38.2548 1 49 11.7452 49 25Z" fill="#ECECEC"/>
+                  <path d="M33.3333 23.3333L25 31.6667L16.6667 23.3333" stroke="black"/>
+                </svg>
+              </span>            
+            </h3>
             <ul class="dates__list" data-century="19">
             </ul>
-            <h3><span class="dates-item-link">С 1900 по 1999 гг.</span><span class="arrow"></span></h3>
+            <!-- <h3><span class="dates-item-link">С 1900 по 1999 гг.</span><span class="arrow"></span></h3> -->
+            <h3 class="dates-item-link"><span >С 1900 по 1999 гг.</span>
+              <span class="arrow">
+                <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M49 25C49 38.2548 38.2548 49 25 49C11.7452 49 1 38.2548 1 25C1 11.7452 11.7452 1 25 1C38.2548 1 49 11.7452 49 25Z" fill="#ECECEC"/>
+                  <path d="M33.3333 23.3333L25 31.6667L16.6667 23.3333" stroke="black"/>
+                </svg>
+              </span>            
+            </h3>
             <ul class="dates__list" data-century="20">
             </ul>
-            <h3><span class="dates-item-link">С 2000 г.</span><span class="arrow"></span></h3>
+            <!-- <h3><span class="dates-item-link">С 2000 г.</span><span class="arrow"></span></h3> -->
+            <h3 class="dates-item-link"><span >С 2000 г.</span>
+              <span class="arrow">
+                <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M49 25C49 38.2548 38.2548 49 25 49C11.7452 49 1 38.2548 1 25C1 11.7452 11.7452 1 25 1C38.2548 1 49 11.7452 49 25Z" fill="#ECECEC"/>
+                  <path d="M33.3333 23.3333L25 31.6667L16.6667 23.3333" stroke="black"/>
+                </svg>
+              </span>            
+            </h3>
             <ul class="dates__list" data-century="21">
             </ul>
           </div>
@@ -396,88 +602,52 @@
           <h3 class="checkbox-container-header">Категории</h3>
           <ul class="check-list">
             <li class="check-list-item">
-              <label class="label-for-checkbox" for="check1">
-                <input class="custom-check" type="checkbox" name="check1" id="check1">  
-                <span class="span-for-check"></span>
-                <span class="label-check">Бестселлеры</span>
-              </label>
+              <input type="checkbox" class="custom-checkbox" id="check1" name="check1" value="yes">
+              <label class="label-for-checkbox" for="check1">Бестселлеры</label>
             </li>
             <li class="check-list-item">
-              <label class="label-for-checkbox" for="check2">
-                <input class="custom-check" type="checkbox" name="check2" id="check2">
-                <span class="span-for-check"></span>
-                <span class="label-check">Искусство</span>
-              </label>
+              <input type="checkbox" class="custom-checkbox" id="check2" name="check2">
+              <label class="label-for-checkbox" for="check2">Искусство</label>
             </li>
             <li class="check-list-item">
-              <label class="label-for-checkbox" for="check3">
-                <input class="custom-check" type="checkbox" name="check3" id="check3">
-                <span class="span-for-check"></span>
-                <span class="label-check">Архитектура</span>
-              </label>
+              <input type="checkbox" class="custom-checkbox" id="check3" name="check3">
+              <label class="label-for-checkbox" for="check3">Архитектура</label>
             </li>
             <li class="check-list-item">
-              <label class="label-for-checkbox" for="check4">
-                <input class="custom-check" type="checkbox" checked name="check4" id="check4">
-                <span class="span-for-check"></span>
-                <span class="label-check">Дизайн</span>
-              </label>
+              <input type="checkbox" checked class="custom-checkbox" id="check4" name="check4">
+              <label class="label-for-checkbox" for="check4">Дизайн</label>
             </li>
             <li class="check-list-item">
-              <label class="label-for-checkbox" for="check5">
-                <input class="custom-check" type="checkbox" name="check5" id="check5">
-                <span class="span-for-check"></span>
-                <span class="label-check">Мода</span>
-              </label>
+              <input type="checkbox" class="custom-checkbox" id="check5" name="check5">
+              <label class="label-for-checkbox" for="check5">Мода</label>
             </li>
             <li class="check-list-item">
-              <label class="label-for-checkbox" for="check6">
-                <input class="custom-check" type="checkbox" name="check6" id="check6">
-                <span class="span-for-check"></span>
-                <span class="label-check">Детям</span>
-              </label>
+              <input type="checkbox" class="custom-checkbox" id="check6" name="check6">
+              <label class="label-for-checkbox" for="check6">Детям</label>
             </li>
             <li class="check-list-item">
-              <label class="label-for-checkbox" for="check7">
-                <input class="custom-check" type="checkbox" name="check7" id="check7">
-                <span class="span-for-check"></span>
-                <span class="label-check">Художественная литература</span>
-              </label>
+              <input type="checkbox" class="custom-checkbox" id="check7" name="check7">
+              <label class="label-for-checkbox" for="check7">Художественная литература</label>
             </li>
             <li class="check-list-item">
-              <label class="label-for-checkbox" for="check8">
-                <input class="custom-check" type="checkbox" name="check8" id="check8">
-                <span class="span-for-check"></span>
-                <span class="label-check">Публицистика</span>
-              </label>
+              <input type="checkbox" class="custom-checkbox" id="check8" name="check8">
+              <label class="label-for-checkbox" for="check8">Публицистика</label>
             </li>
             <li class="check-list-item">
-              <label class="label-for-checkbox" for="check9">
-                <input class="custom-check" type="checkbox" name="check9" id="check9">
-                <span class="span-for-check"></span>
-                <span class="label-check">Путеводители</span>
-              </label>
+              <input type="checkbox" class="custom-checkbox" id="check9" name="check9">
+              <label class="label-for-checkbox" for="check9">Путеводители</label>
             </li>
             <li class="check-list-item">
-              <label class="label-for-checkbox" for="check10">
-                <input class="custom-check" type="checkbox" name="check10" id="check10">
-                <span class="span-for-check"></span>
-                <span class="label-check">Философия</span>
-              </label>
+              <input type="checkbox" class="custom-checkbox" id="check10" name="check10">
+              <label class="label-for-checkbox" for="check10">Философия</label>
             </li>
             <li class="check-list-item">
-              <label class="label-for-checkbox" for="check11">
-                <input class="custom-check" type="checkbox" name="check11" id="check11">
-                <span class="span-for-check"></span>
-                <span class="label-check">Учебная литература</span>
-              </label>
+              <input type="checkbox" class="custom-checkbox" id="check11" name="check11">
+              <label class="label-for-checkbox" for="check11">Учебная литература</label>
             </li>
             <li class="check-list-item">
-              <label class="label-for-checkbox" for="check12">
-                <input class="custom-check" type="checkbox" name="check12" id="check12">
-                <span class="span-for-check"></span>
-                <span class="label-check">Журналы и газеты</span>
-              </label>
+              <input type="checkbox" class="custom-checkbox" id="check12" name="check12">
+              <label class="label-for-checkbox" for="check12">Журналы и газеты</label>
             </li>
           </ul>
           <div class="price-filter">
@@ -494,9 +664,19 @@
         <div class="publications__right-content">
           <div class="publications__slider-container">
             <div class="switch publications__switch">
-              <a href="#" class="pages__switch publications__switch--prev" aria-label="Предыдущая страница."></a>
+              <a href="#" class="pages__switch publications__switch--prev" aria-label="Предыдущая страница.">
+                <svg class="pages__switch--icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15 1C22.732 1 29 7.26801 29 15C29 22.732 22.732 29 15 29C7.26801 29 1 22.732 1 15C1 7.26801 7.26802 0.999999 15 1Z" fill="#666666"/>
+                  <path d="M16 20L11 15L16 10" stroke="white"/>
+                </svg>
+              </a>
               <span class="publications__pages"></span> 
-              <a href="#" class="pages__switch publications__switch--next" aria-label="Следующая страница."></a>
+              <a href="#" class="pages__switch publications__switch--next" aria-label="Следующая страница.">
+                <svg class="pages__switch--icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15 1C22.732 1 29 7.26801 29 15C29 22.732 22.732 29 15 29C7.26801 29 1 22.732 1 15C1 7.26801 7.26802 0.999999 15 1Z" fill="#666666"/>
+                  <path d="M14 20L19 15L14 10" stroke="white"/>
+                </svg>
+              </a>
             </div>
             <div class="swiper-container publications__slider">
               <div class="swiper-wrapper">
@@ -623,7 +803,12 @@
         </div>
         <h3 class="partners__heading">Партнёры проектов:</h3>
         <div class="partners__slider-container">
-          <div class="pages__switch partners__switch--prev"></div>
+          <a href="#" class="pages__switch partners__switch--prev" aria-label="Предыдущая страница.">
+            <svg class="pages__switch--icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 1C22.732 1 29 7.26801 29 15C29 22.732 22.732 29 15 29C7.26801 29 1 22.732 1 15C1 7.26801 7.26802 0.999999 15 1Z" fill="#ECECEC"/>
+              <path d="M16 20L11 15L16 10" stroke="black"/>
+            </svg>              
+          </a>
           <div class="swiper-container partners__slider">
             <div class="swiper-wrapper">
               <div class="swiper-slide partners__slide">
@@ -655,7 +840,12 @@
               </div> 
             </div>
           </div> 
-          <div class="pages__switch partners__switch--next"></div>
+          <a href="#" class="pages__switch partners__switch--next" aria-label="Следующая страница.">
+            <svg class="pages__switch--icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 1C22.732 1 29 7.26801 29 15C29 22.732 22.732 29 15 29C7.26801 29 1 22.732 1 15C1 7.26801 7.26802 0.999999 15 1Z" fill="#ECECEC"/>
+              <path d="M14 20L19 15L14 10" stroke="black"/>
+            </svg>
+          </a>
       </div>      
       </div> 
     </section>   
@@ -679,8 +869,22 @@
               <h3 class="back-call-form__heading">
                 Заказать обратный звонок
               </h3>
-              <input required class="input-field back-call-form__input" type="text" name="username" placeholder="Имя*">
-              <input required class="input-field back-call-form__input" type="tel" name="phone" placeholder="Телефон*">
+              <input 
+                required 
+                class="input-field back-call-form__input" 
+                type="text" 
+                name="username" 
+                placeholder="Имя*"
+                data-validate-field="name">
+              <input 
+                id="phone"
+                required 
+                class="input-field back-call-form__input" 
+                type="tel" 
+                name="phone" 
+                placeholder="Телефон*"
+                data-validate-field="tel"
+                data-validate-rules="phone">
               <button type="submit" class="transparent-btn">
                 Заказать
               </button>  

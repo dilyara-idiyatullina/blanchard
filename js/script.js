@@ -1,23 +1,135 @@
 window.addEventListener('DOMContentLoaded', function() {
 
+    // переменные для свайперов
     let slidesPerViewGallery = 6;
     let slidesPerViewPublications = 3;
     let pageNumberGallery = 1;
     let pageNumberPublications = 1;
 
-    // свайпер hero
-    let heroSwiper = new Swiper('.hero__slider', {
-        // Optional parameters
-        loop: true,
-        autoplay: {
-            delay: 3000,
-        },
-        effect: 'fade',
-        fadeEffect: {
-          crossFade: true
-        },
+    // убираем outline с поля поиска при вводе текста
+    document.querySelector('.search-input').oninput = function(event) {
+        document.querySelector('.search-input').classList.add('no-outline');
+    }
+    document.querySelector('.search-input').onchange = function(event) {
+        document.querySelector('.search-input').classList.remove('no-outline');
+    }
 
-    }); 
+    // выпадающее меню
+    let activeSubMenuLink = null;
+    let activeddmenu = '';
+    let ddmenuDiv = null;
+
+    document.querySelectorAll('.sub-menu__link').forEach(function(menuItem) {
+        menuItem.addEventListener('click', function(event) {
+
+            event.preventDefault();
+            let ddmenuName = menuItem.dataset.ddlink;
+
+            if (document.querySelector('.is-active-dd') != null && activeddmenu != ddmenuName  &&  activeddmenu != '') {
+                toggleMenu(activeSubMenuLink);                
+            }
+
+            toggleMenu(menuItem);
+
+            // активируем для фокуса ссылки нового меню для навигации с клавиатуры
+            document.querySelector(`[data-ddmenu="${ddmenuName}"]`).querySelectorAll('ul li .drop-down-menu__link').forEach(function(ddmenuItem) {
+                ddmenuItem.tabIndex = 0;           
+            });
+
+            // деактивируем для фокуса ссылки старого меню для навигации с клавиатуры
+            if (activeddmenu != '') {
+                document.querySelector(`[data-ddmenu="${activeddmenu}"]`).querySelectorAll('ul li .drop-down-menu__link').forEach(function(ddmenuItem) {
+                    ddmenuItem.tabIndex = -1;           
+                });
+            } 
+            
+            activeSubMenuLink = menuItem;
+            activeddmenu = ddmenuName;        
+
+        })
+    })  
+
+    // закрываем меню при потере фокуса и сбрасываем фокус у его пунктов
+
+    document.addEventListener('click', e => {
+
+        let target = e.target;
+
+        if (activeddmenu != '') {
+            ddmenuDiv = document.querySelector(`[data-ddmenu="${activeddmenu}"]`);
+    
+            let its_menu = target == ddmenuDiv || ddmenuDiv.contains(target);
+
+            let its_menuLink = target == activeSubMenuLink;
+
+            let menu_is_active = activeSubMenuLink.classList.contains('sub-menu__link--active');
+
+            if (!its_menu && !its_menuLink && menu_is_active) {
+                toggleMenu(activeSubMenuLink);
+                document.querySelector(`[data-ddmenu="${activeddmenu}"]`).querySelectorAll('ul li .drop-down-menu__link').forEach(function(ddmenuItem) {
+                    ddmenuItem.tabIndex = -1;           
+                });
+            }
+
+        }
+    })  
+
+
+    function toggleMenu(menuItem) {
+
+        let ddmenuName = menuItem.dataset.ddlink;
+        document.querySelector(`[data-ddmenu="${ddmenuName}"]`).classList.toggle('is-active-dd');
+        menuItem.classList.toggle('sub-menu__link--active');
+        menuItem.querySelector('.sub-menu__icon--arrow-down').classList.toggle('sub-menu__icon--active');
+
+    }
+
+
+    // скролл для выпадающего меню
+    new SimpleBar(document.getElementById('customScrollReal'), { 
+        autoHide: false,
+        scrollbarMaxSize: 28, 
+    });
+    new SimpleBar(document.getElementById('customScrollImpr'), { 
+        autoHide: false,
+        scrollbarMaxSize: 28, 
+    });
+    new SimpleBar(document.getElementById('customScrollPostimpr'), { 
+        autoHide: false,
+        scrollbarMaxSize: 28, 
+    });
+    new SimpleBar(document.getElementById('customScrollAvang'), { 
+        autoHide: false,
+        scrollbarMaxSize: 28, 
+    });
+    new SimpleBar(document.getElementById('customScrollFutur'), { 
+        autoHide: false,
+        scrollbarMaxSize: 28, 
+    });
+
+    // Подписка на рассылку плавно уводит к карте
+    document.querySelector('.btn').addEventListener('click', function(event) {
+
+        event.preventDefault();
+        // заменить на анимацию на js
+        $("html, body").animate({scrollTop: document.querySelector('#contacts').offsetTop}, 800);
+
+    })
+
+    // свайпер hero
+
+    // свайпер hero - вариант с переключением кадров
+    // let heroSwiper = new Swiper('.hero__slider', {
+    //     // Optional parameters
+    //     loop: true,
+    //     autoplay: {
+    //         delay: 3000,
+    //     },
+    //     effect: 'fade',
+    //     fadeEffect: {
+    //       crossFade: true
+    //     },
+    // }); 
 
     // свайпер gallery
     let gallerySwiper = new Swiper('.gallery__slider', {
@@ -356,6 +468,9 @@ window.addEventListener('DOMContentLoaded', function() {
 
             event.preventDefault();
 
+            document.querySelector('.flags-list__link--active').classList.remove('flags-list__link--active');
+            tabsFlag.classList.add('flags-list__link--active');
+
             // очистка дивов 
             document.querySelectorAll('.dates__list-column').forEach(function(listColumn) {
                 listColumn.remove();
@@ -421,7 +536,22 @@ window.addEventListener('DOMContentLoaded', function() {
         heightStyle: "content",
     });
 
-    document.querySelector('.ui-accordion-header').style.borderBottom = 'none';
+
+    //document.querySelectorAll('.ui-corner-all:not(.ui-state-active), .ui-corner-top:not(.ui-state-active)').forEach(function(menuItem) {
+    document.querySelectorAll('.ui-corner-all, .ui-corner-top').forEach(function(menuItem) {
+
+        menuItem.addEventListener('mouseover', function(event) {
+            if (!menuItem.classList.contains('ui-accordion-header-active')) {
+                menuItem.style.borderBottom = '1px solid var(--violet)';
+            }
+        })      
+
+        menuItem.addEventListener('mousedown', function(event) {
+            menuItem.style.borderBottom = '1px solid var(--dark-violet)';
+        })
+
+    })
+
     document.querySelector('.arrow').style.transform = 'rotate(180deg)';
 
     $( "#accordion" ).on( "accordionbeforeactivate", function( event, ui ) {
@@ -432,13 +562,15 @@ window.addEventListener('DOMContentLoaded', function() {
   
     $( "#accordion" ).on( "accordionactivate", function( event, ui ) {
 
-        ui.oldHeader.css( "border-bottom", "1px solid #CACACA" );
+        ui.oldHeader.css( "border-bottom", "1px solid var(--violet)" );
+        ui.newPanel.css( "border-bottom", "1px solid var(--violet)" );
+        ui.newPanel.css( "margin-bottom", "1px" );
 
         ui.newHeader.find(".arrow").css("transform", "rotate(180deg)");
         ui.oldHeader.find(".arrow").css("transform", "rotate(360deg)");
 
     } );
-
+  
     // events
 
     document.querySelector('.events__btn').onclick = function(event) {
@@ -447,6 +579,39 @@ window.addEventListener('DOMContentLoaded', function() {
             event.classList.remove('display-none');
         })
     }
+
+    // Форма "Заказать обратный звонок"
+
+    var selector = document.getElementById("phone");
+    var im = new Inputmask("+7 (999)-999-99-99");
+    im.mask(selector);
+
+    new JustValidate('.contacts__form', {
+        rules: {
+            name: {
+                required: true,
+                minLength: 2,
+                maxLength: 30,
+            },
+            tel: {
+                required: true,
+                function: (name, value) => {
+                    const phone = selector.inputmask.unmaskedvalue();
+                    return Number(phone) && phone.length === 10;
+                },
+            },
+        },
+        messages: {
+            name: {
+                required: 'Поле "Имя" обязательно для заполнения',
+                minLength: 'Имя должно содержать не менее 2-х символов',
+            },
+            tel: {
+                required: 'Поле "Телефон" обязательно для заполнения',
+                function: 'Номер телефона должен состоять из 10 цифр',
+            },               
+          },
+    })
 
 })
 
