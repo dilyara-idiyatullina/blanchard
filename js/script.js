@@ -9,9 +9,11 @@ window.addEventListener('DOMContentLoaded', function() {
     // убираем outline с поля поиска при вводе текста
     document.querySelector('.search-input').oninput = function(event) {
         document.querySelector('.search-input').classList.add('no-outline');
+        document.querySelector('.search-form__icon').classList.add('light-violet-icon');
     }
     document.querySelector('.search-input').onchange = function(event) {
         document.querySelector('.search-input').classList.remove('no-outline');
+        document.querySelector('.search-form__icon').classList.remove('light-violet-icon');
     }
 
     // выпадающее меню
