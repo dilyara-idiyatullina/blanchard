@@ -81,6 +81,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
         let ddmenuName = menuItem.dataset.ddlink;
         document.querySelector(`[data-ddmenu="${ddmenuName}"]`).classList.toggle('is-active-dd');
+        menuItem.parentNode.querySelector('.drop-down-menu').classList.toggle('is-active-ddm');
         menuItem.classList.toggle('sub-menu__link--active');
         menuItem.querySelector('.sub-menu__icon--arrow-down').classList.toggle('sub-menu__icon--active');
 
@@ -183,15 +184,27 @@ window.addEventListener('DOMContentLoaded', function() {
     let pagesCountGallery = Math.ceil(gallerySwiper.slides.length / slidesPerViewGallery);
     document.querySelector('.gallery__pages').innerText = pageNumberGallery + " / " + pagesCountGallery;
     let realIndexGallery = gallerySwiper.realIndex;
-
+    
     gallerySwiper.on('realIndexChange', function () {
 
         if (realIndexGallery >= gallerySwiper.realIndex) {
             pageNumberGallery = pageNumberGallery - 1; 
+            if (pageNumberGallery == 1) {
+                document.querySelector('.gallery__switch--prev').classList.toggle('disabled-link');
+            }
+            if (pageNumberGallery == pagesCountGallery - 1) {
+                document.querySelector('.gallery__switch--next').classList.toggle('disabled-link');
+            }
         } else {
             pageNumberGallery = pageNumberGallery + 1;
+            if (pageNumberGallery == 2) {
+                document.querySelector('.gallery__switch--prev').classList.toggle('disabled-link');
+            }
+            if (pageNumberGallery == pagesCountGallery) {
+                document.querySelector('.gallery__switch--next').classList.toggle('disabled-link');
+            }
         }
-        realIndexGallery = pageNumberGallery;
+        realIndexGallery = gallerySwiper.realIndex;
         document.querySelector('.gallery__pages').innerText = pageNumberGallery + " / " + pagesCountGallery;
 
       });
@@ -249,11 +262,23 @@ window.addEventListener('DOMContentLoaded', function() {
     publicationsSwiper.on('realIndexChange', function () {
 
         if (realIndexPublications >= publicationsSwiper.realIndex) {
-            pageNumberPublications = pageNumberPublications - 1; 
+            pageNumberPublications = pageNumberPublications - 1;
+            if (pageNumberPublications == 1) {
+                document.querySelector('.publications__switch--prev').classList.toggle('disabled-link');
+            }
+            if (pageNumberPublications == pagesCountPublications - 1) {
+                document.querySelector('.publications__switch--next').classList.toggle('disabled-link');
+            } 
         } else {
             pageNumberPublications = pageNumberPublications + 1;
+            if (pageNumberPublications == 2) {
+                document.querySelector('.publications__switch--prev').classList.toggle('disabled-link');
+            }
+            if (pageNumberPublications == pagesCountPublications) {
+                document.querySelector('.publications__switch--next').classList.toggle('disabled-link');
+            }
         }
-        realIndexPublications = pageNumberPublications;
+        realIndexPublications = publicationsSwiper.realIndex;
         document.querySelector('.publications__pages').innerText = pageNumberPublications + " / " + pagesCountPublications;
 
       });
@@ -560,6 +585,9 @@ window.addEventListener('DOMContentLoaded', function() {
     
         ui.newHeader.css( "border-bottom", "none" );;
 
+        ui.newHeader.find(".arrow").css("transform", "rotate(180deg)");
+        ui.oldHeader.find(".arrow").css("transform", "rotate(360deg)");
+
     } );
   
     $( "#accordion" ).on( "accordionactivate", function( event, ui ) {
@@ -567,9 +595,6 @@ window.addEventListener('DOMContentLoaded', function() {
         ui.oldHeader.css( "border-bottom", "1px solid var(--violet)" );
         ui.newPanel.css( "border-bottom", "1px solid var(--violet)" );
         ui.newPanel.css( "margin-bottom", "1px" );
-
-        ui.newHeader.find(".arrow").css("transform", "rotate(180deg)");
-        ui.oldHeader.find(".arrow").css("transform", "rotate(360deg)");
 
     } );
   
