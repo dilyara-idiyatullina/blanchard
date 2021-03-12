@@ -413,31 +413,31 @@ window.addEventListener('DOMContentLoaded', function() {
     // catalog 
 
     let painters = [ 
-            { id: 1, country:'italy', century: 15, name: 'Бенедетто ди Биндо', dates: '1401 - 1466.', portret: '', descr: 'dsdcds'}, 
-            { id: 2, country:'italy', century: 15, name: 'Бергоньоне, Амброджо', dates: '', portret: '', descr: 'dsdcds'},
-            { id: 3, country:'italy', century: 15, name: 'Биссоло, Франческо', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 4, country:'italy', century: 15, name: 'Больтраффио, Джованни', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 5, country:'italy', century: 15, name: 'Бонсиньори, Франческо', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 6, country:'italy', century: 15, name: 'Боттичини, Рафаэлло', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 7, country:'italy', century: 15, name: 'Брамантино', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 8, country:'italy', century: 15, name: 'Бреа, Людовико', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 9, country:'italy', century: 15, name: 'Бьяджо д’Антонио Туччи', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 10, country:'italy', century: 15, name: 'Веккьетта', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 11, country:'italy', century: 15, name: 'Андреа Верроккьо', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 12, country:'italy', century: 15, name: 'Доменико Гирландайо', dates: '2 июня 1448 - 11 января 1494.', portret: '/img/domeniko.jpg', descr: 'Один из ведущих флорентийских художников Кватроченто, основатель художественной династии, которую продолжили его брат Давид и сын Ридольфо. Глава художественной мастерской, где юный Микеланджело в течение года овладевал профессиональными навыками. Автор фресковых циклов, в которых выпукло, со всевозможными подробностями показана домашняя жизнь библейских персонажей (в их роли выступают знатные граждане Флоренции в костюмах того времени).'},
-            { id: 13, country:'italy', century: 15, name: 'Беноццо Гоццоли', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 14, country:'italy', century: 15, name: 'Граначчи, Франческо', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 15, country:'italy', century: 15, name: 'Грегорио ди Чекко', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 16, country:'italy', century: 15, name: 'Джованни да Удине', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 17, country:'italy', century: 15, name: 'Джованни ди Паоло', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 18, country:'italy', century: 15, name: 'Джорджоне', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 19, country:'italy', century: 15, name: 'Парентино, Бернардо', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 20, country:'italy', century: 15, name: 'Пезеллино', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 21, country:'italy', century: 15, name: 'Пьетро Перуджино', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 22, country:'italy', century: 15, name: 'Перуцци, Бальдассаре', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 23, country:'italy', century: 15, name: 'Пизанелло', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 24, country:'italy', century: 15, name: 'Пинтуриккьо', dates: '', portret: '', descr: 'dsdcds'}, 
-            { id: 1, country:'russia', century: 15, name: 'Андрей Рублёв', dates: 'около 1360 — 17 октября 1428.', portret: '/img/rublev.jpg', descr: 'Русский иконописец московской школы иконописи, книжной и монументальной живописи XV века.'}, 
+            { id: 1, country:'italy', century: 15, name: 'Бенедетто ди Биндо', dates: '1401 - 1466.', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 2, country:'italy', century: 15, name: 'Бергоньоне, Амброджо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'},
+            { id: 3, country:'italy', century: 15, name: 'Биссоло, Франческо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 4, country:'italy', century: 15, name: 'Больтраффио, Джованни', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 5, country:'italy', century: 15, name: 'Бонсиньори, Франческо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 6, country:'italy', century: 15, name: 'Боттичини, Рафаэлло', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 7, country:'italy', century: 15, name: 'Брамантино', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 8, country:'italy', century: 15, name: 'Бреа, Людовико', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 9, country:'italy', century: 15, name: 'Бьяджо д’Антонио Туччи', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 10, country:'italy', century: 15, name: 'Веккьетта', dates: '', portret: 'img/Vecchietta.jpg', descr: 'dsdcds'}, 
+            { id: 11, country:'italy', century: 15, name: 'Андреа Верроккьо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 12, country:'italy', century: 15, name: 'Доменико Гирландайо', dates: '2 июня 1448 - 11 января 1494.', portret: 'img/domeniko.jpg', descr: 'Один из ведущих флорентийских художников Кватроченто, основатель художественной династии, которую продолжили его брат Давид и сын Ридольфо. Глава художественной мастерской, где юный Микеланджело в течение года овладевал профессиональными навыками. Автор фресковых циклов, в которых выпукло, со всевозможными подробностями показана домашняя жизнь библейских персонажей (в их роли выступают знатные граждане Флоренции в костюмах того времени).'},
+            { id: 13, country:'italy', century: 15, name: 'Беноццо Гоццоли', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 14, country:'italy', century: 15, name: 'Граначчи, Франческо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 15, country:'italy', century: 15, name: 'Грегорио ди Чекко', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 16, country:'italy', century: 15, name: 'Джованни да Удине', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 17, country:'italy', century: 15, name: 'Джованни ди Паоло', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 18, country:'italy', century: 15, name: 'Джорджоне', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 19, country:'italy', century: 15, name: 'Парентино, Бернардо', dates: 'img/no_foto.png', portret: '', descr: 'dsdcds'}, 
+            { id: 20, country:'italy', century: 15, name: 'Пезеллино', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 21, country:'italy', century: 15, name: 'Пьетро Перуджино', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 22, country:'italy', century: 15, name: 'Перуцци, Бальдассаре', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 23, country:'italy', century: 15, name: 'Пизанелло', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 24, country:'italy', century: 15, name: 'Пинтуриккьо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+            { id: 1, country:'russia', century: 15, name: 'Андрей Рублёв', dates: 'около 1360 — 17 октября 1428.', portret: 'img/rublev.jpg', descr: 'Русский иконописец московской школы иконописи, книжной и монументальной живописи XV века.'}, 
     ];
 
     let activeCountry = 'italy';
@@ -545,7 +545,7 @@ window.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.painter-info__name').innerText = '';
             document.querySelector('.painter-info__dates').innerText = '';
             document.querySelector('.painter-info__description').innerText = '';
-            document.querySelector('.painter-info__portrait').src = '#';
+            document.querySelector('.painter-info__portrait').src = 'img/no_foto.png';
             document.querySelector('.painter-info__portrait').alt = 'нет изображения';            
         }
 
