@@ -15,7 +15,8 @@
   
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU" type="text/javascript"></script>
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU"></script>
+
   <script src="js/just-validate.min.js"></script>
   <script src="js/inputmask.min.js"></script>
   <script src="js/github-focus-visible.js"></script>
@@ -266,19 +267,19 @@
         </div>
         <div class="gallery__right-content gallery__slider-container">
           <div class="switch gallery__switch">
-            <a href="#" class="pages__switch gallery__switch--prev disabled-link" aria-label="Предыдущая страница.">
+            <button class="reset-btn pages__switch gallery__switch--prev disabled-link" aria-label="Предыдущая страница.">
               <svg class="pages__switch--icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 1C22.732 1 29 7.26801 29 15C29 22.732 22.732 29 15 29C7.26801 29 1 22.732 1 15C1 7.26801 7.26802 0.999999 15 1Z" fill="#666666"/>
                 <path d="M16 20L11 15L16 10" stroke="white"/>
               </svg>              
-            </a>
+            </button>
             <span class="gallery__pages"></span>
-            <a href="#" class="pages__switch gallery__switch--next" aria-label="Следующая страница.">
+            <button class="reset-btn pages__switch gallery__switch--next" aria-label="Следующая страница.">
               <svg class="pages__switch--icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 1C22.732 1 29 7.26801 29 15C29 22.732 22.732 29 15 29C7.26801 29 1 22.732 1 15C1 7.26801 7.26802 0.999999 15 1Z" fill="#666666"/>
                 <path d="M14 20L19 15L14 10" stroke="white"/>
               </svg>
-            </a>
+            </button>
           </div>
           <div class="swiper-container gallery__slider">
             <div class="swiper-wrapper">
@@ -770,19 +771,19 @@
         <div class="publications__right-content">
           <div class="publications__slider-container">
             <div class="switch publications__switch">
-              <a href="#" class="pages__switch publications__switch--prev  disabled-link" aria-label="Предыдущая страница.">
+              <button class="reset-btn pages__switch publications__switch--prev  disabled-link" aria-label="Предыдущая страница.">
                 <svg class="pages__switch--icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M15 1C22.732 1 29 7.26801 29 15C29 22.732 22.732 29 15 29C7.26801 29 1 22.732 1 15C1 7.26801 7.26802 0.999999 15 1Z" fill="#666666"/>
                   <path d="M16 20L11 15L16 10" stroke="white"/>
                 </svg>
-              </a>
+              </button>
               <span class="publications__pages"></span> 
-              <a href="#" class="pages__switch publications__switch--next" aria-label="Следующая страница.">
+              <button class="reset-btn pages__switch publications__switch--next" aria-label="Следующая страница.">
                 <svg class="pages__switch--icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M15 1C22.732 1 29 7.26801 29 15C29 22.732 22.732 29 15 29C7.26801 29 1 22.732 1 15C1 7.26801 7.26802 0.999999 15 1Z" fill="#666666"/>
                   <path d="M14 20L19 15L14 10" stroke="white"/>
                 </svg>
-              </a>
+              </button>
             </div>
             <div class="swiper-container publications__slider">
               <div class="swiper-wrapper">
@@ -905,17 +906,17 @@
         <div class="section-description projects__description">Предварительные выводы: постоянное информационно-пропагандистское обеспечение нашей деятельности однозначно фиксирует необходимость своевременного выполнения сверхзадачи. 
           А ещё независимые государства смешаны с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус бесполезности. Прежде всего, постоянное информационно-пропагандистское 
           <div class="tooltip">
-            <span class="marker">i</span> 
+            <span class="marker" tabindex="0">i</span> 
             <div class="popup popup--big">Пример современных тенденций - современная методология разработки</div>
           </div>
            обеспечение нашей деятельности однозначно фиксирует необходимость экономической целесообразности принимаемых решений. И нет сомнений, что действия представителей оппозиции могут быть рассмотрены 
           <div class="tooltip">
-            <span class="marker">i</span> 
+            <span class="marker" tabindex="0">i</span> 
             <div class="popup popup--big">Приятно, граждане, наблюдать, как сделанные на базе аналитики выводы вызывают у вас эмоции</div>
           </div>
            исключительно в разрезе маркетинговых и финансовых
            <div class="tooltip">
-            <span class="marker">i</span> 
+            <span class="marker" tabindex="0">i</span> 
             <div class="popup">В стремлении повысить качество</div>
           </div> 
            предпосылок. Банальные, но неопровержимые выводы, а также представители современных социальных резервов призывают нас к новым свершениям, которые, в свою очередь, должны быть смешаны с не уникальными данными до степени совершенной неузнаваемости. 
@@ -923,49 +924,67 @@
         </div>
         <h3 class="partners__heading">Партнёры проектов:</h3>
         <div class="partners__slider-container">
-          <a href="#" class="pages__switch partners__switch--prev" aria-label="Предыдущая страница.">
+          <button class="reset-btn pages__switch partners__switch--prev" aria-label="Предыдущая страница.">
             <svg class="pages__switch--icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M15 1C22.732 1 29 7.26801 29 15C29 22.732 22.732 29 15 29C7.26801 29 1 22.732 1 15C1 7.26801 7.26802 0.999999 15 1Z" fill="#ECECEC"/>
               <path d="M16 20L11 15L16 10" stroke="black"/>
             </svg>              
-          </a>
+          </button>
           <div class="swiper-container partners__slider">
             <div class="swiper-wrapper">
               <div class="swiper-slide partners__slide">
-                  <a href="#" class="partners__link partners__link--p1" aria-label="Freelands Foundation."></a>
+                <a href="#" class="partners__link" aria-label="Freelands Foundation.">
+                  <img class="partners__img--p1" src="img/p1.png" alt="Freelands Foundation.">
+                </a>
               </div>  
               <div class="swiper-slide partners__slide">  
-                  <a href="#" class="partners__link partners__link--p2" aria-label="Institute for Contemporary Art."></a>
+                <a href="#" class="partners__link" aria-label="Institute for Contemporary Art.">
+                  <img class="partners__img--p2" src="img/p2.png" alt="Institute for Contemporary Art.">
+                </a>
               </div>
               <div class="swiper-slide partners__slide"> 
-                  <a href="#" class="partners__link partners__link--p3" aria-label="Workhouse arts center."></a>
+                <a href="#" class="partners__link" aria-label="Workhouse arts center.">
+                  <img class="partners__img--p3" src="img/p3.png" alt="Workhouse arts center.">
+                </a>
               </div>
               <div class="swiper-slide partners__slide">
-                  <a href="#" class="partners__link partners__link--p4" aria-label="1849 wine co."></a>
+                <a href="#" class="partners__link" aria-label="1849 wine co.">
+                  <img class="partners__img--p4" src="img/p4.png" alt="1849 wine co.">
+                </a>
               </div> 
               <div class="swiper-slide partners__slide"> 
-                  <a href="#" class="partners__link partners__link--p5" aria-label="Hiscox."></a>
+                <a href="#" class="partners__link" aria-label="Hiscox.">
+                  <img class="partners__img--p5" src="img/p5.png" alt="Hiscox.">
+                </a>
               </div>
               <div class="swiper-slide partners__slide">
-                  <a href="#" class="partners__link partners__link--p6" aria-label="Camden arts centre."></a>
+                <a href="#" class="partners__link" aria-label="Camden arts centre.">
+                  <img class="partners__img--p6" src="img/p6.png" alt="Camden arts centre.">
+                </a>
               </div>            
               <div class="swiper-slide partners__slide">
-                  <a href="#" class="partners__link partners__link--p7" aria-label="Stassen premium belgian cider."></a>
+                <a href="#" class="partners__link" aria-label="Stassen premium belgian cider.">
+                  <img class="partners__img--p7" src="img/p7.png" alt="Stassen premium belgian cider.">
+                </a>
               </div>
               <div class="swiper-slide partners__slide">
-                  <a href="#" class="partners__link partners__link--p8" aria-label="Watts gallery artists village."></a>
+                <a href="#" class="partners__link" aria-label="Watts gallery artists village.">
+                  <img class="partners__img--p8" src="img/p8.png" alt="Watts gallery artists village.">
+                </a>
               </div>  
               <div class="swiper-slide partners__slide">
-                  <a href="#" class="partners__link partners__link--p9" aria-label="ESAD."></a>
+                <a href="#" class="partners__link" aria-label="ESAD.">
+                  <img class="partners__img--p9" src="img/p9.png" alt="ESAD.">
+                </a>
               </div> 
             </div>
           </div> 
-          <a href="#" class="pages__switch partners__switch--next" aria-label="Следующая страница.">
+          <button class="reset-btn pages__switch partners__switch--next" aria-label="Следующая страница.">
             <svg class="pages__switch--icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M15 1C22.732 1 29 7.26801 29 15C29 22.732 22.732 29 15 29C7.26801 29 1 22.732 1 15C1 7.26801 7.26802 0.999999 15 1Z" fill="#ECECEC"/>
               <path d="M14 20L19 15L14 10" stroke="black"/>
             </svg>
-          </a>
+          </button>
       </div>      
       </div> 
     </section>   
