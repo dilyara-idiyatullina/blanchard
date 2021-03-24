@@ -27,40 +27,55 @@
 <body>
   <header class="header-main"> 
     <div class="container header-main__container">
-      <a href="#" class="header-main__logo">
-        <img src="img/Лого.svg" alt="Логотип Blanchard">
-      </a>
-      <nav class="nav">
-        <ul class="nav-list">
-          <li class="nav-item">
-            <a href="#about" class="nav-link">О нас</a>
-          </li>
-          <li class="nav-item">
-            <a href="#gallery" class="nav-link">Галерея</a>
-          </li>
-          <li class="nav-item">
-            <a href="#catalog" class="nav-link">Каталог</a>
-          </li>
-          <li class="nav-item">
-            <a href="#events" class="nav-link">События</a>
-          </li>
-          <li class="nav-item">
-            <a href="#publications" class="nav-link">Издания</a>
-          </li>
-          <li class="nav-item">
-            <a href="#projects" class="nav-link">Проекты</a>
-          </li>
-          <li class="nav-item">
-            <a href="#contacts" class="nav-link">Контакты</a>
-          </li>
-        </ul>
-      </nav>     
-      <a href="#" aria-label="Войти в личный кабинет." class="log-in">
-        <svg class="log-in__icon">
-          <path d="M5.12056 9.09278L6.13889 10.1111L9.75 6.5L6.13889 2.88889L5.12056 3.90722L6.98389 5.77778H0V7.22222H6.98389L5.12056 9.09278ZM11.5556 0H1.44444C0.642778 0 0 0.65 0 1.44444V4.33333H1.44444V1.44444H11.5556V11.5556H1.44444V8.66667H0V11.5556C0 12.35 0.642778 13 1.44444 13H11.5556C12.35 13 13 12.35 13 11.5556V1.44444C13 0.65 12.35 0 11.5556 0Z" fill="white"/>
+      <a href="#" id="burger" class="nav-burger">
+        <svg width="36" height="29" viewBox="0 0 36 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="36" height="3.65217" transform="matrix(-1 0 0 1 36 0.699997)" fill="white"/>
+          <path d="M28.2002 12.8739H0.00019455V16.5261H28.2002V12.8739Z" fill="white"/>
+          <path d="M24 25.0478H0V28.7H24V25.0478Z" fill="white"/>
         </svg>
-        Войти
       </a>
+      <a href="#" class="header-main__logo">
+        <img class="logo-img" src="img/Лого.svg" alt="Логотип Blanchard">
+      </a>
+      <button class="search-btn reset-btn">
+        <svg width="30" height="29" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="9.15446" height="2.28862" transform="matrix(-0.718931 0.695081 0.718931 0.695081 6.58105 21.0461)" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M16.1246 24.174C10.0376 24.174 5.32763 19.2725 5.32763 13.5104C5.32763 7.74821 10.0376 2.84674 16.1246 2.84674C22.2115 2.84674 26.9215 7.74821 26.9215 13.5104C26.9215 19.2725 22.2115 24.174 16.1246 24.174ZM16.1246 26.8399C8.76285 26.8399 2.79502 20.8721 2.79502 13.5104C2.79502 6.14867 8.76285 0.180832 16.1246 0.180832C23.4863 0.180832 29.4541 6.14867 29.4541 13.5104C29.4541 20.8721 23.4863 26.8399 16.1246 26.8399Z" fill="white"/>
+        </svg>
+      </button> 
+      <div class="nav-wrapper">    
+        <nav class="nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="#about" class="nav-link">О нас</a>
+            </li>
+            <li class="nav-item">
+              <a href="#gallery" class="nav-link">Галерея</a>
+            </li>
+            <li class="nav-item">
+              <a href="#catalog" class="nav-link">Каталог</a>
+            </li>
+            <li class="nav-item">
+              <a href="#events" class="nav-link">События</a>
+            </li>
+            <li class="nav-item">
+              <a href="#publications" class="nav-link">Издания</a>
+            </li>
+            <li class="nav-item">
+              <a href="#projects" class="nav-link">Проекты</a>
+            </li>
+            <li class="nav-item">
+              <a href="#contacts" class="nav-link">Контакты</a>
+            </li>
+          </ul>
+        </nav>     
+        <a href="#" aria-label="Войти в личный кабинет." class="log-in">
+          <svg class="log-in__icon">
+            <path d="M5.12056 9.09278L6.13889 10.1111L9.75 6.5L6.13889 2.88889L5.12056 3.90722L6.98389 5.77778H0V7.22222H6.98389L5.12056 9.09278ZM11.5556 0H1.44444C0.642778 0 0 0.65 0 1.44444V4.33333H1.44444V1.44444H11.5556V11.5556H1.44444V8.66667H0V11.5556C0 12.35 0.642778 13 1.44444 13H11.5556C12.35 13 13 12.35 13 11.5556V1.44444C13 0.65 12.35 0 11.5556 0Z" fill="white"/>
+          </svg>
+          Войти
+        </a>
+      </div>
     </div>
     <div class="header-sub">
       <div class="container header-sub__container">
@@ -228,12 +243,15 @@
         </div>
       </div> -->
       <div class="hero__background">
-        <img src="img/birmingham-museums-hero1.jpg" alt="фоновое изображение">
+        <picture>
+          <source srcset="img/birmingham-museums-hero1-1024.jpg" media="(max-width: 1024px)">
+          <img src="img/birmingham-museums-hero1.jpg" alt="фоновое изображение">
+        </picture>        
       </div>
       <div class="container hero__container">
         <div class="hero__content">
           <h2 class="hero__heading">
-            Прикоснитесь к прекрасному
+            Прикоснитесь <nobr>к прекрасному</nobr>
           </h2>
           <p class="hero__description">
             Мы вынуждены отталкиваться от того, что реализация намеченных плановых заданий создаёт предпосылки для новых предложений.
@@ -286,210 +304,300 @@
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal1.jpg" alt="Импрессионизм." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal1-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal1.jpg" alt="Импрессионизм." tabindex="0">
+                    </picture>
                   </div>
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal2.jpg" alt="Импрессионизм." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal2-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal2.jpg" alt="Импрессионизм." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal3.jpg" alt="Импрессионизм." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal3-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal3.jpg" alt="Импрессионизм." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal4.jpg" alt="Импрессионизм." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal4-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal4.jpg" alt="Импрессионизм." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal5.jpg" alt="Импрессионизм." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal5-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal5.jpg" alt="Импрессионизм." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal6.jpg" alt="Импрессионизм." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal6-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal6.jpg" alt="Импрессионизм." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal7.jpg" alt="Импрессионизм." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal7-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal7.jpg" alt="Импрессионизм." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal8.jpg" alt="Импрессионизм." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal8-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal8.jpg" alt="Импрессионизм." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal9.jpg" alt="Импрессионизм." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal9-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal9.jpg" alt="Импрессионизм." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal10.jpg" alt="Импрессионизм." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal10-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal10.jpg" alt="Импрессионизм." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal11.jpg" alt="Импрессионизм." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal11-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal11.jpg" alt="Импрессионизм." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal12.jpg" alt="Импрессионизм." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal12-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal12.jpg" alt="Импрессионизм." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal13.jpg" alt="Импрессионизм." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal13-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal13.jpg" alt="Импрессионизм." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal14.jpg" alt="Импрессионизм." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal14-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal14.jpg" alt="Импрессионизм." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal15.jpg" alt="Импрессионизм." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal15-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal15.jpg" alt="Импрессионизм." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal16.jpg" alt="Импрессионизм." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal16-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal16.jpg" alt="Импрессионизм." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal17.jpg" alt="Импрессионизм." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal17-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal17.jpg" alt="Импрессионизм." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal18.jpg" alt="Импрессионизм." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal18-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal18.jpg" alt="Импрессионизм." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal19.jpg" alt="Барокко." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal19-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal19.jpg" alt="Барокко." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal20.jpg" alt="Барокко." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal20-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal20.jpg" alt="Барокко." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal21.jpg" alt="Барокко." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal21-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal21.jpg" alt="Барокко." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal22.jpg" alt="Барокко." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal22-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal22.jpg" alt="Барокко." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal23.jpg" alt="Барокко." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal23-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal23.jpg" alt="Барокко." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal24.jpg" alt="Барокко." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal24-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal24.jpg" alt="Барокко." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal25.jpg" alt="Барокко." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal25-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal25.jpg" alt="Барокко." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal26.jpg" alt="Барокко." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal26-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal26.jpg" alt="Барокко." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal27.jpg" alt="Барокко." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal27-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal27.jpg" alt="Барокко." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal28.jpg" alt="Барокко." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal28-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal28.jpg" alt="Барокко." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal29.jpg" alt="Барокко." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal29-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal29.jpg" alt="Барокко." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
                 <div class="gallery__img">
                   <div class="box-for-bg">
-                    <img class="picture" src="img/gal30.jpg" alt="Барокко." tabindex="0">
+                    <picture>
+                      <source srcset="img/gal30-1024.jpg" media="(max-width: 1024px)">
+                      <img class="picture" src="img/gal30.jpg" alt="Барокко." tabindex="0">
+                    </picture>
                   </div>    
                 </div>
               </div>
@@ -605,7 +713,10 @@
         </h2>
         <ul class="events__list">
           <li class="event">
-            <img class="event__img" src="img/event1.jpg" alt="Изображение книжной гравюры.">
+            <picture>
+              <source srcset="img/event1-1024.jpg" media="(max-width: 1024px)">
+              <img class="event__img" src="img/event1.jpg" alt="Изображение книжной гравюры.">
+            </picture>
             <div class="event__content">
               <div class="event__where">Музей им. Щусева</div>
               <div class="event__when">с 20 марта по 30 апреля</div>
@@ -623,7 +734,10 @@
             </div>
           </li>
           <li class="event">
-            <img class="event__img" src="img/event2.jpg" alt="Изображение витража с выставки.">
+            <picture>
+              <source srcset="img/event2-1024.jpg" media="(max-width: 1024px)">
+              <img class="event__img" src="img/event2.jpg" alt="Изображение витража с выставки.">
+            </picture>
             <div class="event__content">
               <div class="event__where">ММОМА</div>
               <div class="event__when">24 марта 19:00</div>
@@ -641,7 +755,10 @@
             </div>
           </li>
           <li class="event">
-            <img class="event__img" src="img/event3.jpg" alt="Изображение выставочного зала.">
+            <picture>
+              <source srcset="img/event3-1024.jpg" media="(max-width: 1024px)">
+              <img class="event__img" src="img/event3.jpg" alt="Изображение выставочного зала.">
+            </picture>
             <div class="event__content">
               <div class="event__where">Еврейский музей</div>
               <div class="event__when">с 31 марта по 21 апреля</div>
@@ -659,7 +776,10 @@
             </div>
           </li>
           <li class="event display-none">
-            <img class="event__img" src="img/event4.jpg" alt="Изображение биеннале.">
+            <picture>
+              <source srcset="img/event4-1024.jpg" media="(max-width: 1024px)">
+              <img class="event__img" src="img/event4.jpg" alt="Изображение биеннале.">
+            </picture>
             <div class="event__content">
               <div class="event__where">Третьяковка на Крымском валу</div>
               <div class="event__when">с 30 марта по 30 апреля</div>
@@ -677,7 +797,10 @@
             </div>
           </li>
           <li class="event display-none">
-            <img class="event__img" src="img/event5.jpg" alt="Изображение фотографии Джона Визора.">
+            <picture>
+              <source srcset="img/event5-1024.jpg" media="(max-width: 1024px)">
+              <img class="event__img" src="img/event5.jpg" alt="Изображение фотографии Джона Визора.">
+            </picture>
             <div class="event__content">
               <div class="event__where">ММАМ</div>
               <div class="event__when">с 8 апреля по 20 мая</div>

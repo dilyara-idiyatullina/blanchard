@@ -5,6 +5,24 @@ window.addEventListener('DOMContentLoaded', function() {
     let slidesPerViewPublications = 3;
     let pageNumberGallery = 1;
     let pageNumberPublications = 1;
+    let pagesCountGallery;
+    let pagesCountPublications;
+    let datesListColumnLength = 9;
+
+    let burger = document.querySelector('.nav-burger');
+    let menuBurger = document.querySelector('.nav-wrapper');
+    
+    burger.addEventListener('click', function(event) {
+        event.preventDefault();
+        menuBurger.classList.add('open');
+    })
+
+    document.querySelector('.log-in').addEventListener('click', function(event) {
+        event.preventDefault();
+        if (document.querySelector('.open') != null) {
+            menuBurger.classList.remove('open');        
+        }
+    })
 
     // убираем outline с поля поиска при вводе текста
     document.querySelector('.search-input').oninput = function(event) {
@@ -136,29 +154,26 @@ window.addEventListener('DOMContentLoaded', function() {
 
     // свайпер gallery
     let gallerySwiper = new Swiper('.gallery__slider', {
-        // Optional parameters
+
         slidesPerColumn: 2,
         slidesPerGroup: 3,
         slidesPerView: 3,
         spaceBetween: 50,
         // Responsive breakpoints
-        // breakpoints: {
-        //   // when window width is >= 320px
-        //   320: {
-        //     slidesPerView: 3,
-        //     spaceBetween: 10
-        //   },
-          // when window width is >= 480px
-        //   768: {
-        //     slidesPerView: 2,
-        //     spaceBetween: 30
-        //   },
-        //   // when window width is >= 640px
-        //   1024: {
-        //     slidesPerView: 4,
-        //     spaceBetween: 40
-        //   }
-        //},
+        breakpoints: {
+          768: {
+            slidesPerColumn: 2,
+            slidesPerGroup: 2,
+            slidesPerView: 2,
+            spaceBetween: 34
+          },
+          1200: {
+            slidesPerColumn: 2,
+            slidesPerGroup: 3,
+            slidesPerView: 3,
+            spaceBetween: 50              
+          }
+        },
 
         // Navigation arrows
         navigation: {
@@ -181,8 +196,163 @@ window.addEventListener('DOMContentLoaded', function() {
 
     });
 
-    let pagesCountGallery = Math.ceil(gallerySwiper.slides.length / slidesPerViewGallery);
-    document.querySelector('.gallery__pages').innerText = pageNumberGallery + " / " + pagesCountGallery;
+    // свайпер publications
+    let publicationsSwiper = new Swiper('.publications__slider', {
+        // Optional parameters
+        slidesPerGroup: 3,
+        slidesPerView: 3,
+        spaceBetween: 50,
+
+        breakpoints: {
+            768: {
+              slidesPerGroup: 2,
+              slidesPerView: 2,
+              spaceBetween: 50
+            },
+            1200: {
+              slidesPerGroup: 3,
+              slidesPerView: 3,
+              spaceBetween: 50              
+            }
+        },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: '.publications__switch--next',
+            prevEl: '.publications__switch--prev',
+        },
+        
+        speed: 800,
+
+        keyboard: {
+            enabled: true,
+            onlyInViewport: true,
+        },
+
+        a11y: {
+            prevSlideMessage: 'Предыдущий слайд',
+            nextSlideMessage: 'Следующий слайд',
+            paginationBulletMessage: 'Перейти к слайду {{index}}',
+        },
+
+    }); 
+
+
+    // catalog 
+
+    let painters = [ 
+        { id: 1, country:'italy', century: 15, name: 'Бенедетто ди Биндо', dates: '1401 - 1466.', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 2, country:'italy', century: 15, name: 'Бергоньоне, Амброджо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'},
+        { id: 3, country:'italy', century: 15, name: 'Биссоло, Франческо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 4, country:'italy', century: 15, name: 'Больтраффио, Джованни', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 5, country:'italy', century: 15, name: 'Бонсиньори, Франческо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 6, country:'italy', century: 15, name: 'Боттичини, Рафаэлло', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 7, country:'italy', century: 15, name: 'Брамантино', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 8, country:'italy', century: 15, name: 'Бреа, Людовико', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 9, country:'italy', century: 15, name: 'Бьяджо д’Антонио Туччи', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 10, country:'italy', century: 15, name: 'Веккьетта', dates: '', portret: 'img/Vecchietta.jpg', descr: 'dsdcds'}, 
+        { id: 11, country:'italy', century: 15, name: 'Андреа Верроккьо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 12, country:'italy', century: 15, name: 'Доменико Гирландайо', dates: '2 июня 1448 - 11 января 1494.', portret: 'img/domeniko.jpg', descr: 'Один из ведущих флорентийских художников Кватроченто, основатель художественной династии, которую продолжили его брат Давид и сын Ридольфо. Глава художественной мастерской, где юный Микеланджело в течение года овладевал профессиональными навыками. Автор фресковых циклов, в которых выпукло, со всевозможными подробностями показана домашняя жизнь библейских персонажей (в их роли выступают знатные граждане Флоренции в костюмах того времени).'},
+        { id: 13, country:'italy', century: 15, name: 'Беноццо Гоццоли', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 14, country:'italy', century: 15, name: 'Граначчи, Франческо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 15, country:'italy', century: 15, name: 'Грегорио ди Чекко', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 16, country:'italy', century: 15, name: 'Джованни да Удине', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 17, country:'italy', century: 15, name: 'Джованни ди Паоло', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 18, country:'italy', century: 15, name: 'Джорджоне', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 19, country:'italy', century: 15, name: 'Парентино, Бернардо', dates: 'img/no_foto.png', portret: '', descr: 'dsdcds'}, 
+        { id: 20, country:'italy', century: 15, name: 'Пезеллино', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 21, country:'italy', century: 15, name: 'Пьетро Перуджино', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 22, country:'italy', century: 15, name: 'Перуцци, Бальдассаре', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 23, country:'italy', century: 15, name: 'Пизанелло', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 24, country:'italy', century: 15, name: 'Пинтуриккьо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 1, country:'russia', century: 15, name: 'Андрей Рублёв', dates: 'около 1360 — 17 октября 1428.', portret: 'img/rublev.jpg', descr: 'Русский иконописец московской школы иконописи, книжной и монументальной живописи XV века.'}, 
+    ];
+
+    let activeCountry = 'italy';
+    let activePainterNum = 12;
+    let activePainters = painters.filter(item => item.country === activeCountry);
+
+    
+    function onWindowResize() {
+
+        if (document.body.clientWidth <= 1200) {
+            slidesPerViewGallery = 4;
+            slidesPerViewPublications = 2;
+
+            datesListColumnLength = 12;
+        } else {
+            slidesPerViewGallery = 6;
+            slidesPerViewPublications = 3;  
+            
+            datesListColumnLength = 9;
+        }
+
+        pagesCountGallery = Math.ceil(gallerySwiper.slides.length / slidesPerViewGallery);
+        document.querySelector('.gallery__pages').innerText = pageNumberGallery + " / " + pagesCountGallery;
+
+        pagesCountPublications = Math.ceil(publicationsSwiper.slides.length / slidesPerViewPublications);
+        document.querySelector('.publications__pages').innerText = pageNumberPublications + " / " + pagesCountPublications;    
+
+        // очистка дивов 
+        document.querySelectorAll('.dates__list-column').forEach(function(listColumn) {
+            listColumn.remove();
+        });
+        showPaintersList(activeCountry, activePainterNum);
+        showPainterInfo(activePainterNum);
+    }
+
+    window.addEventListener("resize", function() {
+        onWindowResize();     
+    }, false);
+
+    onWindowResize();
+
+
+    function showPaintersList(countryName, painterNum) {
+
+        activePainters = painters.filter(item => item.country === countryName);
+
+        // цикл по аккордеону с веками    
+        if (activePainters.length > 0) {
+
+            document.querySelectorAll('.dates__list').forEach(function(nodeDatesList) {
+
+                let activePaintersCentury = activePainters.filter(item => item.century == nodeDatesList.dataset.century);
+                if (activePaintersCentury.length < 9) {
+                    nodeDatesList.style.height = '110px';   
+                } else {
+                    nodeDatesList.style.height = parseInt(32 * datesListColumnLength + 57) + 'px'; 
+                }
+                
+                let i = 1;
+                let div = document.createElement('div');
+                div.className = "dates__list-column";
+
+                for (let painter of activePaintersCentury) {
+
+                    if (i == painterNum) {
+                        div.innerHTML = div.innerHTML + '<li class="dates__list-item"><a class="dates__link  dates__link--active" data-pid="' + painter.id + '" href="#">' + painter.name + '</a></li>';
+                    } else {
+                        div.innerHTML = div.innerHTML + '<li class="dates__list-item"><a class="dates__link" data-pid="' + painter.id + '" href="#">' + painter.name + '</a></li>';
+                    }
+
+                    if ((i % datesListColumnLength == 0) && (i != activePaintersCentury.length)) {
+                        nodeDatesList.append(div);
+                        div = document.createElement('div');
+                        div.className = "dates__list-column";
+                    }
+
+                    i++;
+                }
+
+                div.style.height = parseInt(32 * datesListColumnLength) + 'px';
+                nodeDatesList.append(div);
+                
+            });     
+        } 
+    }
+
+
     let realIndexGallery = gallerySwiper.realIndex;
     
     gallerySwiper.on('realIndexChange', function () {
@@ -209,54 +379,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
       });
 
-    // свайпер publications
-    let publicationsSwiper = new Swiper('.publications__slider', {
-        // Optional parameters
-        slidesPerGroup: 3,
-        slidesPerView: 3,
-        spaceBetween: 50,
-        // Responsive breakpoints
-        // breakpoints: {
-        //   // when window width is >= 320px
-        //   320: {
-        //     slidesPerView: 3,
-        //     spaceBetween: 10
-        //   },
-          // when window width is >= 480px
-        //   768: {
-        //     slidesPerView: 2,
-        //     spaceBetween: 30
-        //   },
-        //   // when window width is >= 640px
-        //   1024: {
-        //     slidesPerView: 4,
-        //     spaceBetween: 40
-        //   }
-        //},
-
-        // Navigation arrows
-        navigation: {
-            nextEl: '.publications__switch--next',
-            prevEl: '.publications__switch--prev',
-        },
-        
-        speed: 800,
-
-        keyboard: {
-            enabled: true,
-            onlyInViewport: true,
-        },
-
-        a11y: {
-            prevSlideMessage: 'Предыдущий слайд',
-            nextSlideMessage: 'Следующий слайд',
-            paginationBulletMessage: 'Перейти к слайду {{index}}',
-        },
-
-    }); 
-
-    let pagesCountPublications = Math.ceil(publicationsSwiper.slides.length / slidesPerViewPublications);
-    document.querySelector('.publications__pages').innerText = pageNumberPublications + " / " + pagesCountPublications;
     let realIndexPublications = publicationsSwiper.realIndex;
 
     publicationsSwiper.on('realIndexChange', function () {
@@ -287,34 +409,24 @@ window.addEventListener('DOMContentLoaded', function() {
     let partnersSwiper = new Swiper('.partners__slider', {
         // Optional parameters
         loop: true,
-        loopFillGroupWithBlank: true,
-
+        loopFillGroupWithBlank: false,
         slidesOffsetBefore: 0,
         slidesPerGroup: 3,
         slidesPerView: 3,
         spaceBetween: 50,
         //Responsive breakpoints
-        // breakpoints: {
-        //   100: {
-        //     slidesPerGroup: 1,
-        //     slidesPerView: 1,
-        //     spaceBetween: 10,
-        //   },
-        //   768: {
-        //     slidesPerView: 2,
-        //     spaceBetween: 50
-        //   },
-        //   1200: {
-        //     slidesPerGroup: 3,
-        //     slidesPerView: 3,
-        //     spaceBetween: 30,
-        //   },
-        //   1600: {
-        //     slidesPerGroup: 3,
-        //     slidesPerView: 3,
-        //     spaceBetween: 50,
-        //   },
-        // },
+        breakpoints: {
+            768: {
+                slidesPerGroup: 2,
+                slidesPerView: 2,
+                spaceBetween: 50,
+              },
+            1200: {
+                slidesPerGroup: 3,
+                slidesPerView: 3,
+                spaceBetween: 50,              
+            }
+        },
 
         // Navigation arrows
         navigation: {
@@ -356,6 +468,10 @@ window.addEventListener('DOMContentLoaded', function() {
             //     behavior: "smooth"
             // });
 
+            if (document.querySelector('.open') != null) {
+                menuBurger.classList.remove('open');        
+            }
+
             // вариант 3
             $("html, body").animate({scrollTop: offset}, 800);
 
@@ -390,7 +506,8 @@ window.addEventListener('DOMContentLoaded', function() {
             // Порядок по умолчанию: «широта, долгота».
             // Чтобы не определять координаты центра карты вручную,
             // воспользуйтесь инструментом Определение координат.
-            center: [55.75720204375996,37.64243749999998],
+            //center: [55.75720204375996,37.64243749999998],
+            center: [55.760220568958395,37.61855149999991],
 
             // Уровень масштабирования. Допустимые значения:
             // от 0 (весь мир) до 19.
@@ -410,85 +527,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
     };
 
-    // catalog 
-
-    let painters = [ 
-            { id: 1, country:'italy', century: 15, name: 'Бенедетто ди Биндо', dates: '1401 - 1466.', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 2, country:'italy', century: 15, name: 'Бергоньоне, Амброджо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'},
-            { id: 3, country:'italy', century: 15, name: 'Биссоло, Франческо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 4, country:'italy', century: 15, name: 'Больтраффио, Джованни', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 5, country:'italy', century: 15, name: 'Бонсиньори, Франческо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 6, country:'italy', century: 15, name: 'Боттичини, Рафаэлло', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 7, country:'italy', century: 15, name: 'Брамантино', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 8, country:'italy', century: 15, name: 'Бреа, Людовико', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 9, country:'italy', century: 15, name: 'Бьяджо д’Антонио Туччи', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 10, country:'italy', century: 15, name: 'Веккьетта', dates: '', portret: 'img/Vecchietta.jpg', descr: 'dsdcds'}, 
-            { id: 11, country:'italy', century: 15, name: 'Андреа Верроккьо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 12, country:'italy', century: 15, name: 'Доменико Гирландайо', dates: '2 июня 1448 - 11 января 1494.', portret: 'img/domeniko.jpg', descr: 'Один из ведущих флорентийских художников Кватроченто, основатель художественной династии, которую продолжили его брат Давид и сын Ридольфо. Глава художественной мастерской, где юный Микеланджело в течение года овладевал профессиональными навыками. Автор фресковых циклов, в которых выпукло, со всевозможными подробностями показана домашняя жизнь библейских персонажей (в их роли выступают знатные граждане Флоренции в костюмах того времени).'},
-            { id: 13, country:'italy', century: 15, name: 'Беноццо Гоццоли', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 14, country:'italy', century: 15, name: 'Граначчи, Франческо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 15, country:'italy', century: 15, name: 'Грегорио ди Чекко', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 16, country:'italy', century: 15, name: 'Джованни да Удине', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 17, country:'italy', century: 15, name: 'Джованни ди Паоло', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 18, country:'italy', century: 15, name: 'Джорджоне', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 19, country:'italy', century: 15, name: 'Парентино, Бернардо', dates: 'img/no_foto.png', portret: '', descr: 'dsdcds'}, 
-            { id: 20, country:'italy', century: 15, name: 'Пезеллино', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 21, country:'italy', century: 15, name: 'Пьетро Перуджино', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 22, country:'italy', century: 15, name: 'Перуцци, Бальдассаре', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 23, country:'italy', century: 15, name: 'Пизанелло', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 24, country:'italy', century: 15, name: 'Пинтуриккьо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-            { id: 1, country:'russia', century: 15, name: 'Андрей Рублёв', dates: 'около 1360 — 17 октября 1428.', portret: 'img/rublev.jpg', descr: 'Русский иконописец московской школы иконописи, книжной и монументальной живописи XV века.'}, 
-    ];
-
-    let activeCountry = 'italy';
-    let activePainterNum = 12;
-    let activePainters = painters.filter(item => item.country === activeCountry);
-
-    showPaintersList(activeCountry, activePainterNum);
-    showPainterInfo(activePainterNum);    
-
-    function showPaintersList(countryName, painterNum) {
-
-        activePainters = painters.filter(item => item.country === countryName);
-
-        // цикл по аккордеону с веками    
-        if (activePainters.length > 0) {
-
-            document.querySelectorAll('.dates__list').forEach(function(nodeDatesList) {
-
-                let activePaintersCentury = activePainters.filter(item => item.century == nodeDatesList.dataset.century);
-                if (activePaintersCentury.length < 9) {
-                    nodeDatesList.style.maxHeight = '110px';   
-                } else {
-                    nodeDatesList.style.maxHeight = '343px';                        
-                }
-                
-                let i = 1;
-                let div = document.createElement('div');
-                div.className = "dates__list-column";
-
-                for (let painter of activePaintersCentury) {
-
-                    if (i == painterNum) {
-                        div.innerHTML = div.innerHTML + '<li class="dates__list-item"><a class="dates__link  dates__link--active" data-pid="' + painter.id + '" href="#">' + painter.name + '</a></li>';
-                    } else {
-                        div.innerHTML = div.innerHTML + '<li class="dates__list-item"><a class="dates__link" data-pid="' + painter.id + '" href="#">' + painter.name + '</a></li>';
-                    }
-
-                    if (i % 9 == 0) {
-                        nodeDatesList.append(div);
-                        div = document.createElement('div');
-                        div.className = "dates__list-column";
-                    }
-
-                    i++;
-                }
-
-                nodeDatesList.append(div);
-                
-            });     
-        } 
-    }
 
     document.querySelectorAll('.flags-list__link').forEach(function(tabsFlag) {
         tabsFlag.addEventListener('click', function(event) {
@@ -564,7 +602,6 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 
 
-    //document.querySelectorAll('.ui-corner-all:not(.ui-state-active), .ui-corner-top:not(.ui-state-active)').forEach(function(menuItem) {
     document.querySelectorAll('.ui-corner-all, .ui-corner-top').forEach(function(menuItem) {
 
         menuItem.addEventListener('mouseover', function(event) {
@@ -609,8 +646,8 @@ window.addEventListener('DOMContentLoaded', function() {
 
     // Форма "Заказать обратный звонок"
 
-    var selector = document.getElementById("phone");
-    var im = new Inputmask("+7 (999)-999-99-99");
+    let selector = document.getElementById("phone");
+    let im = new Inputmask("+7 (999)-999-99-99");
     im.mask(selector);
 
     new JustValidate('.contacts__form', {
