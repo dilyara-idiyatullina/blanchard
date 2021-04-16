@@ -8,15 +8,432 @@ window.addEventListener('DOMContentLoaded', function() {
     let pagesCountGallery;
     let pagesCountPublications;
     let datesListColumnLength = 9;
+    let modulo = 0;
 
     let burger = document.querySelector('.nav-burger');
     let menuBurger = document.querySelector('.nav-wrapper');
     
+    // выпадающее меню
+    let activeSubMenuLink = null;
+    let activeddmenu = '';
+    let ddmenuDiv = null;
+
+    let myMap;
+
+    // contacts - карта
+    // Функция ymaps.ready() будет вызвана, когда
+    // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
+    try {
+        ymaps.ready(init);
+    } catch {
+        console.log('Карта не загрузилась (');
+    }
+    
+    function init(){
+        // Создание карты.
+        myMap = new ymaps.Map("map", {
+            // Координаты центра карты.
+            // Порядок по умолчанию: «широта, долгота».
+            // Чтобы не определять координаты центра карты вручную,
+            // воспользуйтесь инструментом Определение координат.
+            //center: [55.75720204375996,37.64243749999998],
+            center: [55.760220568958395,37.61855149999991],
+
+            // Уровень масштабирования. Допустимые значения:
+            // от 0 (весь мир) до 19.
+            zoom: 14,
+        });
+                    
+        var myPlacemark = new ymaps.Placemark([55.75846306898368,37.601079499999905], {}, {
+            iconLayout: 'default#image',
+            iconImageHref: '/img/marker.svg',
+            iconImageSize: [20, 20],
+            iconImageOffset: [-3, -42],
+        });
+        
+        // Размещение геообъекта на карте.
+
+        myMap.geoObjects.add(myPlacemark);
+
+    };
+    
+    // свайпер hero
+
+    // свайпер hero - вариант с переключением кадров
+    // let heroSwiper = new Swiper('.hero__slider', {
+    //     // Optional parameters
+    //     loop: true,
+    //     autoplay: {
+    //         delay: 3000,
+    //     },
+    //     effect: 'fade',
+    //     fadeEffect: {
+    //       crossFade: true
+    //     },
+    // }); 
+
+
+    // свайпер projects
+    let partnersSwiper = new Swiper('.partners__slider', {
+
+        loop: true,
+        loopFillGroupWithBlank: false,
+        slidesOffsetBefore: 0,
+        slidesPerGroup: 3,
+        slidesPerView: 3,
+        spaceBetween: 50,
+
+        breakpoints: {
+            180: {
+                slidesPerGroup: 1,
+                slidesPerView: 1,
+            },
+            500: {
+                slidesPerGroup: 2,
+                slidesPerView: 2,
+                spaceBetween: 34,
+            },
+            850: {
+                slidesPerGroup: 2,
+                slidesPerView: 2,
+                spaceBetween: 50,
+            },              
+            1200: {
+                slidesPerGroup: 3,
+                slidesPerView: 3,
+                spaceBetween: 50,              
+            }
+        },
+
+        navigation: {
+            nextEl: '.partners__switch--next',
+            prevEl: '.partners__switch--prev',
+        },
+        
+        speed: 800,
+
+        keyboard: {
+            enabled: true,
+            onlyInViewport: true,
+        },
+
+        a11y: {
+            prevSlideMessage: 'Предыдущий слайд',
+            nextSlideMessage: 'Следующий слайд',
+            paginationBulletMessage: 'Перейти к слайду {{index}}',
+        },
+
+    }); 
+    
+
+    // свайпер gallery
+    let gallerySwiperOptions = {
+
+        // slidesPerColumn: 2,
+        // slidesPerGroup: 2,
+        // slidesPerView: 2,
+        // spaceBetween: 34,
+
+        breakpoints: {
+            180: {
+                slidesPerColumn: 1,
+                slidesPerGroup: 1,
+                slidesPerView: 'auto',
+                spaceBetween: 0
+            },
+            501: {
+                slidesPerColumn: 2,
+                slidesPerGroup: 2,
+                slidesPerView: 2,
+                spaceBetween: 34
+            },
+            1200: {
+                slidesPerColumn: 2,
+                slidesPerGroup: 3,
+                slidesPerView: 3,
+                spaceBetween: 50              
+            },
+        },
+
+        navigation: {
+            nextEl: '.gallery__switch--next',
+            prevEl: '.gallery__switch--prev',
+        },
+        
+        speed: 800,
+
+        keyboard: {
+            enabled: true,
+            onlyInViewport: true,
+        },
+
+        a11y: {
+            prevSlideMessage: 'Предыдущий слайд',
+            nextSlideMessage: 'Следующий слайд',
+            paginationBulletMessage: 'Перейти к слайду {{index}}',
+        },
+
+    };
+
+    let gallerySwiperOptionsOnMobile = {
+
+        slidesPerColumn: 1,
+        slidesPerGroup: 1,
+        slidesPerView: 1,
+        spaceBetween: 0,
+
+        navigation: {
+            nextEl: '.gallery__switch--next',
+            prevEl: '.gallery__switch--prev',
+        },
+        
+        speed: 800,
+
+        keyboard: {
+            enabled: true,
+            onlyInViewport: true,
+        },
+
+        a11y: {
+            prevSlideMessage: 'Предыдущий слайд',
+            nextSlideMessage: 'Следующий слайд',
+            paginationBulletMessage: 'Перейти к слайду {{index}}',
+        },
+
+    };
+
+    let gallerySwiper = new Swiper('.gallery__slider', gallerySwiperOptions);
+
+    let realIndexGallery = gallerySwiper.realIndex;    
+
+    let galleryHandler = function () {    
+
+        if (realIndexGallery >= gallerySwiper.realIndex) {
+            pageNumberGallery = pageNumberGallery - 1; 
+        } else {
+            pageNumberGallery = pageNumberGallery + 1;
+        }
+        realIndexGallery = gallerySwiper.realIndex;
+        
+        document.querySelector('.gallery__pages').innerText = pageNumberGallery + " / " + pagesCountGallery;
+
+    };
+
+    // свайпер publications
+    let publicationsSwiperOptions = {
+
+        slidesPerView: 2,
+        spaceBetween: 0,
+
+        breakpoints: {
+            180: {
+                slidesPerView: 2,
+                spaceBetween: 0,
+            },        
+            501: {
+                slidesPerGroup: 2,
+                slidesPerView: 2,
+                spaceBetween: 38,
+            },
+            1200: {
+                slidesPerGroup: 3,
+                slidesPerView: 3,
+                spaceBetween: 50              
+            }
+        },
+
+        navigation: {
+            nextEl: '.publications__switch--next',
+            prevEl: '.publications__switch--prev',
+        },
+        
+        speed: 800,
+
+        keyboard: {
+            enabled: true,
+            onlyInViewport: true,
+        },
+
+        a11y: {
+            prevSlideMessage: 'Предыдущий слайд',
+            nextSlideMessage: 'Следующий слайд',
+            paginationBulletMessage: 'Перейти к слайду {{index}}',
+        },
+
+    };
+
+    let publicationsSwiper = new Swiper('.publications__slider', publicationsSwiperOptions); 
+
+    let realIndexPublications = publicationsSwiper.realIndex;
+
+    let publicationsHandler = function () {
+
+        realIndexPublications = publicationsSwiper.realIndex;
+
+        floor = Math.floor(publicationsSwiper.slides.length / slidesPerViewPublications);
+        modulo = publicationsSwiper.slides.length % slidesPerViewPublications;
+
+        lastSlideRealIndex = (floor - 1) * slidesPerViewPublications + modulo;
+
+        switch (realIndexPublications) {
+            case 0:
+                pageNumberPublications = 1;
+                break;
+            case lastSlideRealIndex:
+                pageNumberPublications = pagesCountPublications;
+                break;                    
+            default:
+                pageNumberPublications = Math.floor(realIndexPublications / slidesPerViewPublications) + 1;
+        }
+
+        document.querySelector('.publications__pages').innerText = pageNumberPublications + " / " + pagesCountPublications;
+
+    }; 
+    
+    
+    // свайпер events
+    let eventsSwiperOptions = {
+
+        // spaceBetween: 22,
+
+        pagination: {
+            el: '.events-pagination',
+            type: 'bullets',
+        },
+        
+        speed: 800,
+
+        keyboard: {
+            enabled: true,
+        },
+
+        a11y: {
+            prevSlideMessage: 'Предыдущий слайд',
+            nextSlideMessage: 'Следующий слайд',
+            paginationBulletMessage: 'Перейти к слайду {{index}}',
+        }
+    }
+
+    let eventsSwiper = new Swiper('.events__list', eventsSwiperOptions);
+    
+    // скролл для выпадающего меню
+    new SimpleBar(document.getElementById('customScrollReal'), { 
+        autoHide: false,
+        scrollbarMaxSize: 28, 
+    });
+    new SimpleBar(document.getElementById('customScrollImpr'), { 
+        autoHide: false,
+        scrollbarMaxSize: 28, 
+    });
+    new SimpleBar(document.getElementById('customScrollPostimpr'), { 
+        autoHide: false,
+        scrollbarMaxSize: 28, 
+    });
+    new SimpleBar(document.getElementById('customScrollAvang'), { 
+        autoHide: false,
+        scrollbarMaxSize: 28, 
+    });
+    new SimpleBar(document.getElementById('customScrollFutur'), { 
+        autoHide: false,
+        scrollbarMaxSize: 28, 
+    });
+
+    // переменные каталога
+    let activeCountry = 'italy';
+    let activePainterNum = 12;
+
+    // catalog 
+
+    let painters = [ 
+        { id: 1, country:'italy', century: 15, name: 'Бенедетто ди Биндо', dates: '1401 - 1466.', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 2, country:'italy', century: 15, name: 'Бергоньоне, Амброджо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'},
+        { id: 3, country:'italy', century: 15, name: 'Биссоло, Франческо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 4, country:'italy', century: 15, name: 'Больтраффио, Джованни', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 5, country:'italy', century: 15, name: 'Бонсиньори, Франческо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 6, country:'italy', century: 15, name: 'Боттичини, Рафаэлло', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 7, country:'italy', century: 15, name: 'Брамантино', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 8, country:'italy', century: 15, name: 'Бреа, Людовико', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 9, country:'italy', century: 15, name: 'Бьяджо д’Антонио Туччи', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 10, country:'italy', century: 15, name: 'Веккьетта', dates: '', portret: 'img/Vecchietta.jpg', descr: 'dsdcds'}, 
+        { id: 11, country:'italy', century: 15, name: 'Андреа Верроккьо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 12, country:'italy', century: 15, name: 'Доменико Гирландайо', dates: '2 июня 1448 - 11 января 1494.', portret: 'img/domeniko.jpg', descr: 'Один из ведущих флорентийских художников Кватроченто, основатель художественной династии, которую продолжили его брат Давид и сын Ридольфо. Глава художественной мастерской, где юный Микеланджело в течение года овладевал профессиональными навыками. Автор фресковых циклов, в которых выпукло, со всевозможными подробностями показана домашняя жизнь библейских персонажей (в их роли выступают знатные граждане Флоренции в костюмах того времени).'},
+        { id: 13, country:'italy', century: 15, name: 'Беноццо Гоццоли', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 14, country:'italy', century: 15, name: 'Граначчи, Франческо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 15, country:'italy', century: 15, name: 'Грегорио ди Чекко', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 16, country:'italy', century: 15, name: 'Джованни да Удине', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 17, country:'italy', century: 15, name: 'Джованни ди Паоло', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 18, country:'italy', century: 15, name: 'Джорджоне', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 19, country:'italy', century: 15, name: 'Парентино, Бернардо', dates: 'img/no_foto.png', portret: '', descr: 'dsdcds'}, 
+        { id: 20, country:'italy', century: 15, name: 'Пезеллино', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 21, country:'italy', century: 15, name: 'Пьетро Перуджино', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 22, country:'italy', century: 15, name: 'Перуцци, Бальдассаре', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 23, country:'italy', century: 15, name: 'Пизанелло', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 24, country:'italy', century: 15, name: 'Пинтуриккьо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
+        { id: 1, country:'russia', century: 15, name: 'Андрей Рублёв', dates: 'около 1360 — 17 октября 1428.', portret: 'img/rublev.jpg', descr: 'Русский иконописец московской школы иконописи, книжной и монументальной живописи XV века.'}, 
+    ];
+
+    let activePainters = painters.filter(item => item.country === activeCountry);
+
+
+    // Публикации. При клике на Категории открывается весь список чекбоксов
+
+    function checkListToggle() {
+        document.querySelectorAll('.check-list-item').forEach(function(checkList) {
+
+            if (document.querySelector('.checkbox-container-header__active') != null) {               
+                checkList.style.display = "block";        
+            } else {
+                if (!checkList.querySelector('.custom-checkbox').checked)
+                checkList.style.display = "none";
+            }
+            
+        })  
+    }  
+
+    let toggleClass = function(event) {
+        document.querySelector('.checkbox-container-header__arrow-down').classList.toggle('checkbox-container-header__active');
+        checkListToggle();
+    }
+
+    function toggleCross(labelCrossClasses) {
+
+        document.querySelectorAll(labelCrossClasses).forEach(function(checkbox) {
+            checkbox.addEventListener('click', function(event) {
+
+                let clickElement = (labelCrossClasses == '.label-for-checkbox') ? checkbox.previousElementSibling : checkbox.previousElementSibling.previousElementSibling;
+    
+                if (clickElement.checked) {
+                    if (labelCrossClasses == '.checkbox-btn-close') {
+                        clickElement.checked = false;
+                    }
+                    checkbox.parentNode.lastElementChild.classList.remove('checkbox-btn-close--visible');
+
+                    if (document.querySelector('.checkbox-container-header__active') === null) {
+                        checkbox.parentNode.style.display = "none";
+                    }
+                } else {
+                    checkbox.parentNode.lastElementChild.classList.add('checkbox-btn-close--visible');
+                }
+            })
+            
+        }) 
+
+    }
+
+    toggleCross('.label-for-checkbox');
+    toggleCross('.checkbox-btn-close');
+
+
+    onWindowResize();
+
+    
+    // открытие мобильного меню
     burger.addEventListener('click', function(event) {
         event.preventDefault();
         menuBurger.classList.add('open');
     })
 
+    // закрытие мобильного меню
     document.querySelector('.log-in').addEventListener('click', function(event) {
         event.preventDefault();
         if (document.querySelector('.open') != null) {
@@ -34,10 +451,7 @@ window.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.search-form__icon').classList.remove('light-violet-icon');
     }
 
-    // выпадающее меню
-    let activeSubMenuLink = null;
-    let activeddmenu = '';
-    let ddmenuDiv = null;
+
 
     document.querySelectorAll('.sub-menu__link').forEach(function(menuItem) {
         menuItem.addEventListener('click', function(event) {
@@ -70,7 +484,6 @@ window.addEventListener('DOMContentLoaded', function() {
     })  
 
     // закрываем меню при потере фокуса и сбрасываем фокус у его пунктов
-
     document.addEventListener('click', e => {
 
         let target = e.target;
@@ -106,28 +519,6 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    // скролл для выпадающего меню
-    new SimpleBar(document.getElementById('customScrollReal'), { 
-        autoHide: false,
-        scrollbarMaxSize: 28, 
-    });
-    new SimpleBar(document.getElementById('customScrollImpr'), { 
-        autoHide: false,
-        scrollbarMaxSize: 28, 
-    });
-    new SimpleBar(document.getElementById('customScrollPostimpr'), { 
-        autoHide: false,
-        scrollbarMaxSize: 28, 
-    });
-    new SimpleBar(document.getElementById('customScrollAvang'), { 
-        autoHide: false,
-        scrollbarMaxSize: 28, 
-    });
-    new SimpleBar(document.getElementById('customScrollFutur'), { 
-        autoHide: false,
-        scrollbarMaxSize: 28, 
-    });
-
     // Подписка на рассылку плавно уводит к карте
     document.querySelector('.btn').addEventListener('click', function(event) {
 
@@ -137,175 +528,164 @@ window.addEventListener('DOMContentLoaded', function() {
 
     })
 
-    // свайпер hero
 
-    // свайпер hero - вариант с переключением кадров
-    // let heroSwiper = new Swiper('.hero__slider', {
-    //     // Optional parameters
-    //     loop: true,
-    //     autoplay: {
-    //         delay: 3000,
-    //     },
-    //     effect: 'fade',
-    //     fadeEffect: {
-    //       crossFade: true
-    //     },
-    // }); 
+    function destroySwiper(swiperObj, swiperName) {
 
-    // свайпер gallery
-    let gallerySwiper = new Swiper('.gallery__slider', {
+        if (swiperObj !== undefined) {
+            swiperObj.destroy(true, false);
+        }
 
-        slidesPerColumn: 2,
-        slidesPerGroup: 3,
-        slidesPerView: 3,
-        spaceBetween: 50,
-        // Responsive breakpoints
-        breakpoints: {
-          768: {
-            slidesPerColumn: 2,
-            slidesPerGroup: 2,
-            slidesPerView: 2,
-            spaceBetween: 34
-          },
-          1200: {
-            slidesPerColumn: 2,
-            slidesPerGroup: 3,
-            slidesPerView: 3,
-            spaceBetween: 50              
-          }
-        },
-
-        // Navigation arrows
-        navigation: {
-            nextEl: '.gallery__switch--next',
-            prevEl: '.gallery__switch--prev',
-        },
-        
-        speed: 800,
-
-        keyboard: {
-            enabled: true,
-            onlyInViewport: true,
-        },
-
-        a11y: {
-            prevSlideMessage: 'Предыдущий слайд',
-            nextSlideMessage: 'Следующий слайд',
-            paginationBulletMessage: 'Перейти к слайду {{index}}',
-        },
-
-    });
-
-    // свайпер publications
-    let publicationsSwiper = new Swiper('.publications__slider', {
-        // Optional parameters
-        slidesPerGroup: 3,
-        slidesPerView: 3,
-        spaceBetween: 50,
-
-        breakpoints: {
-            768: {
-              slidesPerGroup: 2,
-              slidesPerView: 2,
-              spaceBetween: 50
-            },
-            1200: {
-              slidesPerGroup: 3,
-              slidesPerView: 3,
-              spaceBetween: 50              
-            }
-        },
-
-        // Navigation arrows
-        navigation: {
-            nextEl: '.publications__switch--next',
-            prevEl: '.publications__switch--prev',
-        },
-        
-        speed: 800,
-
-        keyboard: {
-            enabled: true,
-            onlyInViewport: true,
-        },
-
-        a11y: {
-            prevSlideMessage: 'Предыдущий слайд',
-            nextSlideMessage: 'Следующий слайд',
-            paginationBulletMessage: 'Перейти к слайду {{index}}',
-        },
-
-    }); 
-
-
-    // catalog 
-
-    let painters = [ 
-        { id: 1, country:'italy', century: 15, name: 'Бенедетто ди Биндо', dates: '1401 - 1466.', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 2, country:'italy', century: 15, name: 'Бергоньоне, Амброджо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'},
-        { id: 3, country:'italy', century: 15, name: 'Биссоло, Франческо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 4, country:'italy', century: 15, name: 'Больтраффио, Джованни', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 5, country:'italy', century: 15, name: 'Бонсиньори, Франческо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 6, country:'italy', century: 15, name: 'Боттичини, Рафаэлло', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 7, country:'italy', century: 15, name: 'Брамантино', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 8, country:'italy', century: 15, name: 'Бреа, Людовико', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 9, country:'italy', century: 15, name: 'Бьяджо д’Антонио Туччи', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 10, country:'italy', century: 15, name: 'Веккьетта', dates: '', portret: 'img/Vecchietta.jpg', descr: 'dsdcds'}, 
-        { id: 11, country:'italy', century: 15, name: 'Андреа Верроккьо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 12, country:'italy', century: 15, name: 'Доменико Гирландайо', dates: '2 июня 1448 - 11 января 1494.', portret: 'img/domeniko.jpg', descr: 'Один из ведущих флорентийских художников Кватроченто, основатель художественной династии, которую продолжили его брат Давид и сын Ридольфо. Глава художественной мастерской, где юный Микеланджело в течение года овладевал профессиональными навыками. Автор фресковых циклов, в которых выпукло, со всевозможными подробностями показана домашняя жизнь библейских персонажей (в их роли выступают знатные граждане Флоренции в костюмах того времени).'},
-        { id: 13, country:'italy', century: 15, name: 'Беноццо Гоццоли', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 14, country:'italy', century: 15, name: 'Граначчи, Франческо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 15, country:'italy', century: 15, name: 'Грегорио ди Чекко', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 16, country:'italy', century: 15, name: 'Джованни да Удине', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 17, country:'italy', century: 15, name: 'Джованни ди Паоло', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 18, country:'italy', century: 15, name: 'Джорджоне', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 19, country:'italy', century: 15, name: 'Парентино, Бернардо', dates: 'img/no_foto.png', portret: '', descr: 'dsdcds'}, 
-        { id: 20, country:'italy', century: 15, name: 'Пезеллино', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 21, country:'italy', century: 15, name: 'Пьетро Перуджино', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 22, country:'italy', century: 15, name: 'Перуцци, Бальдассаре', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 23, country:'italy', century: 15, name: 'Пизанелло', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 24, country:'italy', century: 15, name: 'Пинтуриккьо', dates: '', portret: 'img/no_foto.png', descr: 'dsdcds'}, 
-        { id: 1, country:'russia', century: 15, name: 'Андрей Рублёв', dates: 'около 1360 — 17 октября 1428.', portret: 'img/rublev.jpg', descr: 'Русский иконописец московской школы иконописи, книжной и монументальной живописи XV века.'}, 
-    ];
-
-    let activeCountry = 'italy';
-    let activePainterNum = 12;
-    let activePainters = painters.filter(item => item.country === activeCountry);
+        document.querySelector(swiperName).querySelector('.swiper-wrapper').style.transform = 'none';
+    }
 
     
     function onWindowResize() {
 
-        if (document.body.clientWidth <= 1200) {
-            slidesPerViewGallery = 4;
-            slidesPerViewPublications = 2;
+        document.querySelector('.event:nth-child(3)').classList.add('display-none');
+        document.querySelector('.event:nth-child(4)').classList.add('display-none');
+        document.querySelector('.event:nth-child(5)').classList.add('display-none');
 
-            datesListColumnLength = 12;
-        } else {
+        if (document.body.clientWidth > 1200) {
+
             slidesPerViewGallery = 6;
-            slidesPerViewPublications = 3;  
-            
+            slidesPerViewPublications = 3;             
             datesListColumnLength = 9;
+
+            if (document.querySelector('.display-none') != null) {
+                document.querySelector('.event:nth-child(3)').classList.remove('display-none');
+            }
+
+
+        } else if ((document.body.clientWidth <= 1200)  &&  (document.body.clientWidth > 850)) {
+
+            slidesPerViewGallery = 4;
+            slidesPerViewPublications = 2;              
+            datesListColumnLength = 12;
+
+            if (document.querySelector('.display-none') != null) {
+                document.querySelector('.event:nth-child(3)').classList.remove('display-none');
+            }
+
+        } else if ((document.body.clientWidth <= 850)  &&  (document.body.clientWidth > 500)) {
+
+            slidesPerViewGallery = 4;
+            slidesPerViewPublications = 2;              
+            datesListColumnLength = 9;
+
+            if (document.querySelector('.display-none') != null) {
+                document.querySelector('.event:nth-child(3)').classList.add('display-none');
+            }
+
+        } else {
+
+            slidesPerViewGallery = 1;
+            datesListColumnLength = 24;
+
+
+            if (document.querySelector('.display-none') != null) {
+                document.querySelectorAll('.display-none').forEach(function(event) {
+                    event.classList.remove('display-none');
+                })
+            }
+            
+        }    
+        
+
+        if (document.body.clientWidth > 500) {
+
+            if (document.querySelector('.checkbox-container-header__active') === null) {
+                document.querySelector('.checkbox-container-header__arrow-down').classList.add('checkbox-container-header__active');
+                checkListToggle();
+            }
+            document.querySelector('.checkbox-container-header').removeEventListener('click', toggleClass);
+
+            destroySwiper(eventsSwiper, '.events__list');
+
+            if (document.querySelector('.display-none') != null) {
+                document.querySelector('.events__btn').style.display = "block";
+            }
+            document.querySelector('.events__list .swiper-wrapper').style.flexWrap = 'wrap';
+
+            
+            gallerySwiper.destroy(true, true);
+            gallerySwiper = new Swiper('.gallery__slider', gallerySwiperOptions);
+            pageNumberGallery = 1;            
+            gallerySwiper.on('realIndexChange', galleryHandler);
+            gallerySwiper.init();
+            gallerySwiper.update();
+
+            if (publicationsSwiper.destroyed) {
+                
+                publicationsSwiper = new Swiper('.publications__slider', publicationsSwiperOptions);
+                pageNumberPublications = 1;
+                realIndexPublications = publicationsSwiper.realIndex;
+                document.querySelector('.publications__slider .swiper-wrapper').style.flexWrap = 'nowrap';
+                
+            };
+            
+            publicationsSwiper.on('realIndexChange', publicationsHandler);
+
+        } else {
+
+            if (document.querySelector('.checkbox-container-header__active') != null) {
+                document.querySelector('.checkbox-container-header__arrow-down').classList.remove('checkbox-container-header__active');
+            }
+            checkListToggle();
+            document.querySelector('.checkbox-container-header').addEventListener('click', toggleClass);
+
+            if (eventsSwiper.destroyed) {
+                
+                eventsSwiper = new Swiper('.events__list', eventsSwiperOptions);
+                document.querySelector('.events__list .swiper-wrapper').style.flexWrap = 'nowrap';
+                document.querySelector('.events__btn').style.display = "none";
+
+            };
+
+            gallerySwiper.destroy(true, true);
+            gallerySwiper = new Swiper('.gallery__slider', gallerySwiperOptionsOnMobile);
+            pageNumberGallery = 1;
+            gallerySwiper.on('realIndexChange', galleryHandler);
+            gallerySwiper.init();
+            gallerySwiper.update();
+
+            publicationsSwiper.update();
+
+            publicationsSwiper.off('realIndexChange', publicationsHandler);
+            destroySwiper(publicationsSwiper, '.publications__slider');
+             
+            document.querySelector('.publications__slider .swiper-wrapper').style.flexWrap = 'wrap';
+
         }
 
+        realIndexGallery = gallerySwiper.realIndex;
         pagesCountGallery = Math.ceil(gallerySwiper.slides.length / slidesPerViewGallery);
         document.querySelector('.gallery__pages').innerText = pageNumberGallery + " / " + pagesCountGallery;
 
-        pagesCountPublications = Math.ceil(publicationsSwiper.slides.length / slidesPerViewPublications);
-        document.querySelector('.publications__pages').innerText = pageNumberPublications + " / " + pagesCountPublications;    
+
+        if (!publicationsSwiper.destroyed) {
+            
+            realIndexPublications = publicationsSwiper.realIndex;
+            pagesCountPublications = Math.ceil(publicationsSwiper.slides.length / slidesPerViewPublications);
+            document.querySelector('.publications__pages').innerText = pageNumberPublications + " / " + pagesCountPublications;    
+
+        }
+
+
+        slidesPerViewPublicationsPrev = slidesPerViewPublications;
 
         // очистка дивов 
         document.querySelectorAll('.dates__list-column').forEach(function(listColumn) {
             listColumn.remove();
         });
+
         showPaintersList(activeCountry, activePainterNum);
         showPainterInfo(activePainterNum);
+
     }
 
-    window.addEventListener("resize", function() {
+    window.addEventListener("resize", function() {  // orientationchange
         onWindowResize();     
     }, false);
-
-    onWindowResize();
 
 
     function showPaintersList(countryName, painterNum) {
@@ -318,10 +698,12 @@ window.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.dates__list').forEach(function(nodeDatesList) {
 
                 let activePaintersCentury = activePainters.filter(item => item.century == nodeDatesList.dataset.century);
-                if (activePaintersCentury.length < 9) {
-                    nodeDatesList.style.height = '110px';   
+                if (activePaintersCentury.length < 3) {
+                    nodeDatesList.style.height = '70px';   
+                } else if (activePaintersCentury.length > datesListColumnLength) {
+                   nodeDatesList.style.height = parseInt(32 * datesListColumnLength + 57) + 'px'; ;
                 } else {
-                    nodeDatesList.style.height = parseInt(32 * datesListColumnLength + 57) + 'px'; 
+                    nodeDatesList.style.height = parseInt(32 * activePaintersCentury.length + 38) + 'px'; 
                 }
                 
                 let i = 1;
@@ -345,109 +727,19 @@ window.addEventListener('DOMContentLoaded', function() {
                     i++;
                 }
 
-                div.style.height = parseInt(32 * datesListColumnLength) + 'px';
+                if (activePaintersCentury.length < 3) {
+                    div.style.height = '70px';   
+                } else if (activePaintersCentury.length > datesListColumnLength) {
+                    div.style.height = parseInt(32 * datesListColumnLength) + 'px'; 
+                } else {
+                    div.style.height = parseInt(32 * activePaintersCentury.length) + 'px'; 
+                }
                 nodeDatesList.append(div);
                 
             });     
         } 
     }
-
-
-    let realIndexGallery = gallerySwiper.realIndex;
-    
-    gallerySwiper.on('realIndexChange', function () {
-
-        if (realIndexGallery >= gallerySwiper.realIndex) {
-            pageNumberGallery = pageNumberGallery - 1; 
-            if (pageNumberGallery == 1) {
-                document.querySelector('.gallery__switch--prev').classList.toggle('disabled-link');
-            }
-            if (pageNumberGallery == pagesCountGallery - 1) {
-                document.querySelector('.gallery__switch--next').classList.toggle('disabled-link');
-            }
-        } else {
-            pageNumberGallery = pageNumberGallery + 1;
-            if (pageNumberGallery == 2) {
-                document.querySelector('.gallery__switch--prev').classList.toggle('disabled-link');
-            }
-            if (pageNumberGallery == pagesCountGallery) {
-                document.querySelector('.gallery__switch--next').classList.toggle('disabled-link');
-            }
-        }
-        realIndexGallery = gallerySwiper.realIndex;
-        document.querySelector('.gallery__pages').innerText = pageNumberGallery + " / " + pagesCountGallery;
-
-      });
-
-    let realIndexPublications = publicationsSwiper.realIndex;
-
-    publicationsSwiper.on('realIndexChange', function () {
-
-        if (realIndexPublications >= publicationsSwiper.realIndex) {
-            pageNumberPublications = pageNumberPublications - 1;
-            if (pageNumberPublications == 1) {
-                document.querySelector('.publications__switch--prev').classList.toggle('disabled-link');
-            }
-            if (pageNumberPublications == pagesCountPublications - 1) {
-                document.querySelector('.publications__switch--next').classList.toggle('disabled-link');
-            } 
-        } else {
-            pageNumberPublications = pageNumberPublications + 1;
-            if (pageNumberPublications == 2) {
-                document.querySelector('.publications__switch--prev').classList.toggle('disabled-link');
-            }
-            if (pageNumberPublications == pagesCountPublications) {
-                document.querySelector('.publications__switch--next').classList.toggle('disabled-link');
-            }
-        }
-        realIndexPublications = publicationsSwiper.realIndex;
-        document.querySelector('.publications__pages').innerText = pageNumberPublications + " / " + pagesCountPublications;
-
-      });
-
-    // свайпер projects
-    let partnersSwiper = new Swiper('.partners__slider', {
-        // Optional parameters
-        loop: true,
-        loopFillGroupWithBlank: false,
-        slidesOffsetBefore: 0,
-        slidesPerGroup: 3,
-        slidesPerView: 3,
-        spaceBetween: 50,
-        //Responsive breakpoints
-        breakpoints: {
-            768: {
-                slidesPerGroup: 2,
-                slidesPerView: 2,
-                spaceBetween: 50,
-              },
-            1200: {
-                slidesPerGroup: 3,
-                slidesPerView: 3,
-                spaceBetween: 50,              
-            }
-        },
-
-        // Navigation arrows
-        navigation: {
-            nextEl: '.partners__switch--next',
-            prevEl: '.partners__switch--prev',
-        },
-        
-        speed: 800,
-
-        keyboard: {
-            enabled: true,
-            onlyInViewport: true,
-        },
-
-        a11y: {
-            prevSlideMessage: 'Предыдущий слайд',
-            nextSlideMessage: 'Следующий слайд',
-            paginationBulletMessage: 'Перейти к слайду {{index}}',
-        },
-
-    }); 
+  
 
     // плавная навигация по элементам главного меню
     document.querySelectorAll('.nav-link').forEach(function(navLink) {
@@ -494,38 +786,6 @@ window.addEventListener('DOMContentLoaded', function() {
             { value: 'техника', label: 'Техника' },
           ],
     });
-
-    // contacts - карта
-    // Функция ymaps.ready() будет вызвана, когда
-    // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
-    ymaps.ready(init);
-    function init(){
-        // Создание карты.
-        var myMap = new ymaps.Map("map", {
-            // Координаты центра карты.
-            // Порядок по умолчанию: «широта, долгота».
-            // Чтобы не определять координаты центра карты вручную,
-            // воспользуйтесь инструментом Определение координат.
-            //center: [55.75720204375996,37.64243749999998],
-            center: [55.760220568958395,37.61855149999991],
-
-            // Уровень масштабирования. Допустимые значения:
-            // от 0 (весь мир) до 19.
-            zoom: 14,
-        });
-                    
-        var myPlacemark = new ymaps.Placemark([55.75846306898368,37.601079499999905], {}, {
-            iconLayout: 'default#image',
-            iconImageHref: '/img/marker.svg',
-            iconImageSize: [20, 20],
-            iconImageOffset: [-3, -42],
-        });
-        
-        // Размещение геообъекта на карте.
-
-        myMap.geoObjects.add(myPlacemark);
-
-    };
 
 
     document.querySelectorAll('.flags-list__link').forEach(function(tabsFlag) {
@@ -635,7 +895,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     } );
   
-    // events
+    // events - нажатие кнопки "Все события" {
 
     document.querySelector('.events__btn').onclick = function(event) {
         document.querySelector('.events__btn').style.display = "none";
@@ -644,7 +904,8 @@ window.addEventListener('DOMContentLoaded', function() {
         })
     }
 
-    // Форма "Заказать обратный звонок"
+
+    // Форма "Заказать обратный звонок" {
 
     let selector = document.getElementById("phone");
     let im = new Inputmask("+7 (999)-999-99-99");
@@ -676,6 +937,7 @@ window.addEventListener('DOMContentLoaded', function() {
             },               
           },
     })
+    // Форма "Заказать обратный звонок" }
 
 })
 
