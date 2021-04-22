@@ -20,9 +20,9 @@
   <script src="js/just-validate.min.js"></script>
   <script src="js/inputmask.min.js"></script>
   <script src="js/github-focus-visible.js"></script>
-  <script src="js/script.js?v=4"></script>
+  <script src="js/script.js?v=5"></script>
 
-  <link rel="stylesheet" href="css/styles.css?v=3">
+  <link rel="stylesheet" href="css/styles.css?v=4">
 </head>
 <body>
   <header class="header-main"> 
@@ -37,13 +37,34 @@
       <a href="#" class="header-main__logo">
         <img class="logo-img" src="img/Лого.svg" alt="Логотип Blanchard">
       </a>
-      <button class="search-btn reset-btn">
+      <button class="search-btn reset-btn search-btn--visible">
         <svg width="30" height="29" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="9.15446" height="2.28862" transform="matrix(-0.718931 0.695081 0.718931 0.695081 6.58105 21.0461)" fill="white"/>
           <path fill-rule="evenodd" clip-rule="evenodd" d="M16.1246 24.174C10.0376 24.174 5.32763 19.2725 5.32763 13.5104C5.32763 7.74821 10.0376 2.84674 16.1246 2.84674C22.2115 2.84674 26.9215 7.74821 26.9215 13.5104C26.9215 19.2725 22.2115 24.174 16.1246 24.174ZM16.1246 26.8399C8.76285 26.8399 2.79502 20.8721 2.79502 13.5104C2.79502 6.14867 8.76285 0.180832 16.1246 0.180832C23.4863 0.180832 29.4541 6.14867 29.4541 13.5104C29.4541 20.8721 23.4863 26.8399 16.1246 26.8399Z" fill="white"/>
         </svg>
       </button> 
-      <div class="nav-wrapper">    
+      <form action="https://jsonplaceholder.typicode.com/posts" method="POST" class="search-form-mobile">
+        <button class="search-form__btn">
+          <svg width="30" height="29" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="9.15446" height="2.28862" transform="matrix(-0.718931 0.695081 0.718931 0.695081 6.58105 21.0461)" fill="white"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.1246 24.174C10.0376 24.174 5.32763 19.2725 5.32763 13.5104C5.32763 7.74821 10.0376 2.84674 16.1246 2.84674C22.2115 2.84674 26.9215 7.74821 26.9215 13.5104C26.9215 19.2725 22.2115 24.174 16.1246 24.174ZM16.1246 26.8399C8.76285 26.8399 2.79502 20.8721 2.79502 13.5104C2.79502 6.14867 8.76285 0.180832 16.1246 0.180832C23.4863 0.180832 29.4541 6.14867 29.4541 13.5104C29.4541 20.8721 23.4863 26.8399 16.1246 26.8399Z" fill="white"/>
+          </svg>          
+        </button>
+        <input required type="text" name="search" class="input-reset search-input-mobile" aria-label="Поиск по сайту." autocomplete="off">
+        <button class="search-btn-close reset-btn">
+          <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2.63623" width="37.2838" height="3.72838" transform="rotate(45 2.63623 0)" fill="white"/>
+            <rect y="26.3636" width="37.2838" height="3.72838" transform="rotate(-45 0 26.3636)" fill="white"/>
+          </svg>
+        </button> 
+      </form>
+      <div class="nav-wrapper">  
+        <button class="nav-btn-close reset-btn">
+          <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2.63623" width="37.2838" height="3.72838" transform="rotate(45 2.63623 0)" fill="white"/>
+            <rect y="26.3636" width="37.2838" height="3.72838" transform="rotate(-45 0 26.3636)" fill="white"/>
+          </svg>
+        </button>  
         <nav class="nav">
           <ul class="nav-list">
             <li class="nav-item">
@@ -73,8 +94,11 @@
           <svg class="log-in__icon">
             <path d="M5.12056 9.09278L6.13889 10.1111L9.75 6.5L6.13889 2.88889L5.12056 3.90722L6.98389 5.77778H0V7.22222H6.98389L5.12056 9.09278ZM11.5556 0H1.44444C0.642778 0 0 0.65 0 1.44444V4.33333H1.44444V1.44444H11.5556V11.5556H1.44444V8.66667H0V11.5556C0 12.35 0.642778 13 1.44444 13H11.5556C12.35 13 13 12.35 13 11.5556V1.44444C13 0.65 12.35 0 11.5556 0Z" fill="white"/>
           </svg>
+          <svg class="log-in__icon--mobile" width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.545 6.295L4.25 7L6.75 4.5L4.25 2L3.545 2.705L4.835 4H0V5H4.835L3.545 6.295ZM8 0H1C0.445 0 0 0.45 0 1V3H1V1H8V8H1V6H0V8C0 8.55 0.445 9 1 9H8C8.55 9 9 8.55 9 8V1C9 0.45 8.55 0 8 0Z" fill="white"/>
+          </svg>
           Войти
-        </a>
+        </a> 
       </div>
     </div>
     <div class="header-sub">

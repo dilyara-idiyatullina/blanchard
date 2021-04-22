@@ -12,6 +12,9 @@ window.addEventListener('DOMContentLoaded', function() {
 
     let burger = document.querySelector('.nav-burger');
     let menuBurger = document.querySelector('.nav-wrapper');
+    let closeMenu = document.querySelector('.nav-btn-close');
+    let searchBtn = document.querySelector('.search-btn');
+    let searchCloseBtn = document.querySelector('.search-btn-close');
     
     // выпадающее меню
     let activeSubMenuLink = null;
@@ -88,7 +91,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 slidesPerGroup: 1,
                 slidesPerView: 1,
             },
-            500: {
+            420: {
                 slidesPerGroup: 2,
                 slidesPerView: 2,
                 spaceBetween: 34,
@@ -98,7 +101,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 slidesPerView: 2,
                 spaceBetween: 50,
             },              
-            1200: {
+            1124: {
                 slidesPerGroup: 3,
                 slidesPerView: 3,
                 spaceBetween: 50,              
@@ -141,13 +144,13 @@ window.addEventListener('DOMContentLoaded', function() {
                 slidesPerView: 'auto',
                 spaceBetween: 0
             },
-            501: {
+            421: {
                 slidesPerColumn: 2,
                 slidesPerGroup: 2,
                 slidesPerView: 2,
                 spaceBetween: 34
             },
-            1200: {
+            1124: {
                 slidesPerColumn: 2,
                 slidesPerGroup: 3,
                 slidesPerView: 3,
@@ -230,12 +233,12 @@ window.addEventListener('DOMContentLoaded', function() {
                 slidesPerView: 2,
                 spaceBetween: 0,
             },        
-            501: {
+            421: {
                 slidesPerGroup: 2,
                 slidesPerView: 2,
                 spaceBetween: 38,
             },
-            1200: {
+            1124: {
                 slidesPerGroup: 3,
                 slidesPerView: 3,
                 spaceBetween: 50              
@@ -441,6 +444,29 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     })
 
+    closeMenu.addEventListener('click', function(event) {
+        event.preventDefault();
+        if (document.querySelector('.open') != null) {
+            menuBurger.classList.remove('open');        
+        }
+    })
+
+    // нажатие на кнопку Поиска
+    searchBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        searchBtn.classList.remove('search-btn--visible');
+        document.querySelector('.header-main__logo').classList.add('header-main__logo--mr');
+        document.querySelector('.search-form-mobile').classList.add('search-form-mobile--open');
+    })  
+    
+    // нажатие на кнопку закрытия Поиска   
+    searchCloseBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        searchBtn.classList.add('search-btn--visible');
+        document.querySelector('.header-main__logo').classList.remove('header-main__logo--mr');
+        document.querySelector('.search-form-mobile').classList.remove('search-form-mobile--open');
+    }) 
+
     // убираем outline с поля поиска при вводе текста
     document.querySelector('.search-input').oninput = function(event) {
         document.querySelector('.search-input').classList.add('no-outline');
@@ -538,14 +564,48 @@ window.addEventListener('DOMContentLoaded', function() {
         document.querySelector(swiperName).querySelector('.swiper-wrapper').style.transform = 'none';
     }
 
+    // позиционирование всплывающих подсказок
+    function checkMarkerPosition(marker) {
+
+        if (parseInt(marker.getBoundingClientRect().x) < 132) {
+            return 'left';
+        }   
+        if (parseInt(marker.getBoundingClientRect().x) >= parseInt(document.body.clientWidth - 133)) {
+            return 'right';
+        }  
+        return 'norm'; 
+        
+    }
+
+    function setNewPopupPosition(popup, markerPosition) {
+
+        if (markerPosition === 'left') {
+            popup.classList.add('popup--right');
+        } 
+        
+        if (markerPosition === 'right') { 
+            popup.classList.add('popup--left');          
+        }
+
+    }
     
     function onWindowResize() {
+
+        document.querySelectorAll('.marker').forEach(function(marker) {
+            if (marker.nextElementSibling.classList.contains('popup--left')) {
+                marker.nextElementSibling.classList.remove('popup--left');
+            }
+            if (marker.nextElementSibling.classList.contains('popup--right')) {
+                marker.nextElementSibling.classList.remove('popup--right');
+            }
+            setNewPopupPosition(marker.nextElementSibling, checkMarkerPosition(marker));        
+        })
 
         document.querySelector('.event:nth-child(3)').classList.add('display-none');
         document.querySelector('.event:nth-child(4)').classList.add('display-none');
         document.querySelector('.event:nth-child(5)').classList.add('display-none');
 
-        if (document.body.clientWidth > 1200) {
+        if (document.body.clientWidth > 1124) {
 
             slidesPerViewGallery = 6;
             slidesPerViewPublications = 3;             
@@ -556,7 +616,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
 
 
-        } else if ((document.body.clientWidth <= 1200)  &&  (document.body.clientWidth > 850)) {
+        } else if ((document.body.clientWidth <= 1124)  &&  (document.body.clientWidth > 850)) {
 
             slidesPerViewGallery = 4;
             slidesPerViewPublications = 2;              
@@ -566,7 +626,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 document.querySelector('.event:nth-child(3)').classList.remove('display-none');
             }
 
-        } else if ((document.body.clientWidth <= 850)  &&  (document.body.clientWidth > 500)) {
+        } else if ((document.body.clientWidth <= 850)  &&  (document.body.clientWidth > 420)) {
 
             slidesPerViewGallery = 4;
             slidesPerViewPublications = 2;              
@@ -590,8 +650,7 @@ window.addEventListener('DOMContentLoaded', function() {
             
         }    
         
-
-        if (document.body.clientWidth > 500) {
+        if (document.body.clientWidth > 420) {
 
             if (document.querySelector('.checkbox-container-header__active') === null) {
                 document.querySelector('.checkbox-container-header__arrow-down').classList.add('checkbox-container-header__active');
@@ -896,7 +955,6 @@ window.addEventListener('DOMContentLoaded', function() {
     } );
   
     // events - нажатие кнопки "Все события" {
-
     document.querySelector('.events__btn').onclick = function(event) {
         document.querySelector('.events__btn').style.display = "none";
         document.querySelectorAll('.display-none').forEach(function(event) {        
@@ -906,7 +964,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
 
     // Форма "Заказать обратный звонок" {
-
     let selector = document.getElementById("phone");
     let im = new Inputmask("+7 (999)-999-99-99");
     im.mask(selector);
