@@ -20,11 +20,28 @@
   <script src="js/just-validate.min.js"></script>
   <script src="js/inputmask.min.js"></script>
   <script src="js/github-focus-visible.js"></script>
-  <script src="js/script.js?v=5"></script>
+  <script src="js/script.js?v=7"></script>
 
-  <link rel="stylesheet" href="css/styles.css?v=4">
+  <link rel="stylesheet" href="css/styles.css?v=7">
 </head>
 <body>
+  <div class="md-modal md-effect-12">
+    <div class="md-content">
+      <div class="md-content__left">
+      </div>
+      <div class="md-content__right">
+        <button class="md-close reset-btn">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.666641 15.3043L15.3333 3.17761e-05L16 0.695679L1.33331 15.9999L0.666641 15.3043Z" fill="black"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.666725 -2.96187e-06L15.3334 15.3042L14.6667 15.9999L5.76143e-05 0.695644L0.666725 -2.96187e-06Z" fill="black"/>
+            </svg>
+        </button>
+        <div class="modal-paint-info">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="md-overlay"></div>
   <header class="header-main"> 
     <div class="container header-main__container">
       <a href="#" id="burger" class="nav-burger">
@@ -259,21 +276,21 @@
   <main>
     <section class="hero">
       <h1 class="visually-hidden">Художественная галерея Бланчард.</h1>
-      <!-- <div class="swiper-container hero__slider">
+      <div class="swiper-container hero__slider">
         <div class="swiper-wrapper">
-          <div class="swiper-slide" style="background-image: url(img/birmingham-museums-hero1.jpg);"></div>
-          <div class="swiper-slide" style="background-image: url(img/birmingham-museums-hero2.jpg);"></div>
-          <div class="swiper-slide" style="background-image: url(img/birmingham-museums-hero3.jpg);"></div>
+          <div class="swiper-slide hero__slide--1"></div>
+          <div class="swiper-slide hero__slide--2"></div>
+          <div class="swiper-slide hero__slide--3"></div>
         </div>
-      </div> -->
-      <div class="hero__background">
+      </div>
+      <!-- <div class="hero__background">
         <picture>
           <source srcset="img/birmingham-museums-hero1-1024.jpg" media="(max-width: 1024px)">
           <source srcset="img/birmingham-museums-hero1-768.jpg" media="(max-width: 768px)">
           <source srcset="img/birmingham-museums-hero1-320.jpg" media="(max-width: 120px)">
           <img src="img/birmingham-museums-hero1.jpg" alt="фоновое изображение">
         </picture>        
-      </div>
+      </div> -->
       <div class="container hero__container">
         <div class="hero__content">
           <h2 class="hero__heading">
@@ -337,6 +354,20 @@
                       <img class="picture" src="img/gal1.jpg" alt="Импрессионизм." tabindex="0">
                     </picture>
                   </div>
+                  <div class="paint-info">
+                    <div class="painter-name">
+                      Казимир Малевич
+                    </div>
+                    <div class="paint">
+                      "Женщина без граблей"
+                    </div>
+                    <div class="paint-dates">
+                      1930-1931
+                    </div>
+                    <div class="paint-description">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis repellat doloremque quisquam, magnam sed voluptate, sit nemo a recusandae veniam ad labore maiores eum consequatur nesciunt ullam dolorem? Nobis, iste.
+                    </div>
+                  </div>  
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
@@ -348,7 +379,21 @@
                       <source srcset="img/gal2-1024.jpg" media="(max-width: 1024px)">
                       <img class="picture" src="img/gal2.jpg" alt="Импрессионизм." tabindex="0">
                     </picture>
-                  </div>    
+                  </div>
+                  <div class="paint-info">
+                    <div class="painter-name">
+                      Казимир Малевич
+                    </div>
+                    <div class="paint">
+                      "Абстракция"
+                    </div>
+                    <div class="paint-dates">
+                      1930-1931
+                    </div>
+                    <div class="paint-description">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis repellat doloremque quisquam, magnam sed voluptate, sit nemo a recusandae veniam ad labore maiores eum consequatur nesciunt ullam dolorem? Nobis, iste.
+                    </div>
+                  </div>     
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
@@ -360,7 +405,21 @@
                       <source srcset="img/gal3-1024.jpg" media="(max-width: 1024px)">
                       <img class="picture" src="img/gal3.jpg" alt="Импрессионизм." tabindex="0">
                     </picture>
-                  </div>    
+                  </div> 
+                  <div class="paint-info">
+                    <div class="painter-name">
+                      Казимир Малевич
+                    </div>
+                    <div class="paint">
+                      "Женщина с граблями"
+                    </div>
+                    <div class="paint-dates">
+                      1931-1932
+                    </div>
+                    <div class="paint-description">
+                      Картина из второй серии крестьянского цикла работ Казимира Малевича. Художник принялся за её создание в 1930-1931 годах, после того, как первый цикл был утерян после Берлинской и Варшавской выставок в 1927 году.
+                    </div>
+                  </div>   
                 </div>
               </div>
               <div class="swiper-slide gallery__slide">
@@ -384,6 +443,20 @@
                       <source srcset="img/gal5-1024.jpg" media="(max-width: 1024px)">
                       <img class="picture" src="img/gal5.jpg" alt="Импрессионизм." tabindex="0">
                     </picture>
+                  </div> 
+                  <div class="paint-info">
+                    <div class="painter-name">
+                      Казимир Малевич
+                    </div>
+                    <div class="paint">
+                      "Женщины со снопами"
+                    </div>
+                    <div class="paint-dates">
+                      1931-1932
+                    </div>
+                    <div class="paint-description">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum eveniet quis illo repellat reprehenderit commodi at ipsa fugit est. Accusantium perspiciatis aliquam dolorum aut, repudiandae rem distinctio nobis et quas.
+                    </div>
                   </div>    
                 </div>
               </div>
@@ -1313,10 +1386,10 @@
               Шоурум №4
             </div>
             <div class="contacts__info">
-              Леонтьевский переулок, дом 5, строение 1                 
+              Леонтьевский переулок, дом 5, <nobr>строение 1</nobr>                 
             </div>
           </address>
-          <form action="https://jsonplaceholder.typicode.com/posts" autocomplete="on" method="POST" class="back-call-form contacts__form">
+          <form id="my-form" action="#" autocomplete="on" method="POST" class="back-call-form contacts__form">
             <h3 class="back-call-form__heading">
               Заказать обратный звонок
             </h3>
@@ -1338,7 +1411,7 @@
               data-validate-rules="phone">
             <button type="submit" class="transparent-btn back-call-form__btn">
               Заказать
-            </button>  
+            </button> 
           </form>
           <div class="connect-one-click">
             Связаться в один клик

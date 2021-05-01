@@ -63,17 +63,17 @@ window.addEventListener('DOMContentLoaded', function() {
     // свайпер hero
 
     // свайпер hero - вариант с переключением кадров
-    // let heroSwiper = new Swiper('.hero__slider', {
-    //     // Optional parameters
-    //     loop: true,
-    //     autoplay: {
-    //         delay: 3000,
-    //     },
-    //     effect: 'fade',
-    //     fadeEffect: {
-    //       crossFade: true
-    //     },
-    // }); 
+    let heroSwiper = new Swiper('.hero__slider', {
+        // Optional parameters
+        loop: true,
+        autoplay: {
+            delay: 3000,
+        },
+        effect: 'fade',
+        fadeEffect: {
+          crossFade: true
+        },
+    }); 
 
 
     // свайпер projects
@@ -554,7 +554,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
     })
 
-
     function destroySwiper(swiperObj, swiperName) {
 
         if (swiperObj !== undefined) {
@@ -829,9 +828,23 @@ window.addEventListener('DOMContentLoaded', function() {
             // вариант 4
             // должен быть реализован на чистом js (использование анимации?)
         })
-    })
+    })      
 
     // gallery
+    // модальное окно галереи
+    document.querySelectorAll('.gallery__img').forEach(function(galleryImg) {
+        galleryImg.addEventListener('click', function(event) {
+            document.querySelector('.md-modal').classList.add('md-show');
+            document.body.classList.add('class-for-body');
+            document.querySelector('.md-content__left').innerHTML = galleryImg.querySelector('.box-for-bg').innerHTML;
+            document.querySelector('.modal-paint-info').innerHTML = galleryImg.querySelector('.paint-info').innerHTML;
+        });
+    });
+    document.querySelector('.md-close').addEventListener('click', function() {
+        document.querySelector('.md-modal').classList.remove('md-show');
+        document.body.classList.remove('class-for-body');
+    })
+
     // выпадающий список
     const element = document.querySelector('#selectFilter');
         
@@ -881,6 +894,11 @@ window.addEventListener('DOMContentLoaded', function() {
 
         showPainterInfo(target.dataset.pid);
 
+        if (document.body.clientWidth <= 850) {
+            let section = document.querySelector('.painter-info');
+            let offset = section.offsetTop;    
+            $("html, body").animate({scrollTop: offset}, 800); 
+        }       
     }
 
     function showPainterInfo(painterId) {
@@ -964,6 +982,8 @@ window.addEventListener('DOMContentLoaded', function() {
 
 
     // Форма "Заказать обратный звонок" {
+    let form = document.getElementById("my-form");
+    let orderBtn = document.querySelector('.back-call-form__btn');
     let selector = document.getElementById("phone");
     let im = new Inputmask("+7 (999)-999-99-99");
     im.mask(selector);
@@ -992,7 +1012,31 @@ window.addEventListener('DOMContentLoaded', function() {
                 required: 'Поле "Телефон" обязательно для заполнения',
                 function: 'Номер телефона должен состоять из 10 цифр',
             },               
-          },
+        },
+        submitHandler: async function() {
+            if (orderBtn.innerText == 'Отправка...') {
+                return;
+            }
+            orderBtn.innerText = 'Отправка...';
+
+            let response = await fetch('https://formspree.io/f/moqyjjqv', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: new FormData(form)
+            });
+         
+            let result = await response.json();
+            if (result.ok) {
+                alert('Письмо успешно отправлено.');
+            } else {
+                alert('Письмо не отправлено! Повторите попытку позже.');
+            }
+            orderBtn.innerText = 'Заказать';
+            form.reset();
+        },
+
     })
     // Форма "Заказать обратный звонок" }
 
