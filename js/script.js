@@ -67,7 +67,7 @@ window.addEventListener('DOMContentLoaded', function() {
         // Optional parameters
         loop: true,
         autoplay: {
-            delay: 3000,
+            delay: 5000,
         },
         effect: 'fade',
         fadeEffect: {
@@ -828,13 +828,27 @@ window.addEventListener('DOMContentLoaded', function() {
             // вариант 4
             // должен быть реализован на чистом js (использование анимации?)
         })
-    })      
+    })  
+    
+    function showAlert(message) {
+        document.querySelector('.md-alert__message').innerText = message;
+        document.querySelector('.md-alert').classList.add('md-show');
+        document.querySelector('.md-overlay-alert').classList.add('md-show');
+        document.body.classList.add('class-for-body');
+    }
+
+    document.querySelector('.md-alert__btn').onclick = function(event) {
+        document.querySelector('.md-alert').classList.remove('md-show');
+        document.querySelector('.md-overlay-alert').classList.remove('md-show');
+        document.body.classList.remove('class-for-body');
+    }
 
     // gallery
     // модальное окно галереи
     document.querySelectorAll('.gallery__img').forEach(function(galleryImg) {
         galleryImg.addEventListener('click', function(event) {
             document.querySelector('.md-modal').classList.add('md-show');
+            document.querySelector('.md-overlay').classList.add('md-show');
             document.body.classList.add('class-for-body');
             document.querySelector('.md-content__left').innerHTML = galleryImg.querySelector('.box-for-bg').innerHTML;
             document.querySelector('.modal-paint-info').innerHTML = galleryImg.querySelector('.paint-info').innerHTML;
@@ -842,8 +856,16 @@ window.addEventListener('DOMContentLoaded', function() {
     });
     document.querySelector('.md-close').addEventListener('click', function() {
         document.querySelector('.md-modal').classList.remove('md-show');
+        document.querySelector('.md-overlay').classList.remove('md-show');
         document.body.classList.remove('class-for-body');
-    })
+    });
+    document.querySelector('.md-overlay:not(.md-content)').addEventListener('click', function(event) {
+        if (event.target.classList.contains('md-overlay')) {
+            document.querySelector('.md-modal').classList.remove('md-show');
+            document.querySelector('.md-overlay').classList.remove('md-show');
+            document.body.classList.remove('class-for-body');
+        }       
+    });
 
     // выпадающий список
     const element = document.querySelector('#selectFilter');
@@ -1029,9 +1051,9 @@ window.addEventListener('DOMContentLoaded', function() {
          
             let result = await response.json();
             if (result.ok) {
-                alert('Письмо успешно отправлено.');
+                showAlert('Письмо успешно отправлено.');
             } else {
-                alert('Письмо не отправлено! Повторите попытку позже.');
+                showAlert('Письмо не отправлено! \n Повторите попытку позже.');
             }
             orderBtn.innerText = 'Заказать';
             form.reset();

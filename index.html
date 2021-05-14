@@ -20,28 +20,39 @@
   <script src="js/just-validate.min.js"></script>
   <script src="js/inputmask.min.js"></script>
   <script src="js/github-focus-visible.js"></script>
-  <script src="js/script.js?v=7"></script>
+  <script src="js/script.js?v=9"></script>
 
-  <link rel="stylesheet" href="css/styles.css?v=7">
+  <link rel="stylesheet" href="css/styles.css?v=9">
 </head>
 <body>
-  <div class="md-modal md-effect-12">
-    <div class="md-content">
-      <div class="md-content__left">
-      </div>
-      <div class="md-content__right">
-        <button class="md-close reset-btn">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.666641 15.3043L15.3333 3.17761e-05L16 0.695679L1.33331 15.9999L0.666641 15.3043Z" fill="black"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.666725 -2.96187e-06L15.3334 15.3042L14.6667 15.9999L5.76143e-05 0.695644L0.666725 -2.96187e-06Z" fill="black"/>
+  <div class="md-overlay md-effect-12">
+    <div class="md-modal md-effect-12">
+      <div class="md-content">
+        <div class="md-content__left">
+        </div>
+        <div class="md-content__right">
+          <button class="md-close reset-btn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M0.666641 15.3043L15.3333 3.17761e-05L16 0.695679L1.33331 15.9999L0.666641 15.3043Z" fill="black"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M0.666725 -2.96187e-06L15.3334 15.3042L14.6667 15.9999L5.76143e-05 0.695644L0.666725 -2.96187e-06Z" fill="black"/>
             </svg>
-        </button>
-        <div class="modal-paint-info">
+          </button>
+          <div class="modal-paint-info">
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="md-overlay"></div>
+  <div class="md-overlay md-effect-12 md-overlay-alert">
+    <div class="md-modal md-effect-12 md-alert">
+      <div class="md-content md-alert__content">
+        <p class="md-alert__message"></p> 
+        <button class="transparent-btn md-alert__btn">
+          Ok
+        </button>         
+      </div>
+    </div> 
+  </div>
   <header class="header-main"> 
     <div class="container header-main__container">
       <a href="#" id="burger" class="nav-burger">
