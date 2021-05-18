@@ -317,7 +317,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    let eventsSwiper = new Swiper('.events__list', eventsSwiperOptions);
+    let eventsSwiper = new Swiper('.events__swiper', eventsSwiperOptions);
     
     // скролл для выпадающего меню
     new SimpleBar(document.getElementById('customScrollReal'), { 
@@ -657,12 +657,12 @@ window.addEventListener('DOMContentLoaded', function() {
             }
             document.querySelector('.checkbox-container-header').removeEventListener('click', toggleClass);
 
-            destroySwiper(eventsSwiper, '.events__list');
+            destroySwiper(eventsSwiper, '.events__swiper');
 
             if (document.querySelector('.display-none') != null) {
                 document.querySelector('.events__btn').style.display = "block";
             }
-            document.querySelector('.events__list .swiper-wrapper').style.flexWrap = 'wrap';
+            document.querySelector('.events__list').style.flexWrap = 'wrap';
 
             
             gallerySwiper.destroy(true, true);
@@ -693,8 +693,8 @@ window.addEventListener('DOMContentLoaded', function() {
 
             if (eventsSwiper.destroyed) {
                 
-                eventsSwiper = new Swiper('.events__list', eventsSwiperOptions);
-                document.querySelector('.events__list .swiper-wrapper').style.flexWrap = 'nowrap';
+                eventsSwiper = new Swiper('.events__swiper', eventsSwiperOptions);
+                document.querySelector('.events__list').style.flexWrap = 'nowrap';
                 document.querySelector('.events__btn').style.display = "none";
 
             };
@@ -706,10 +706,9 @@ window.addEventListener('DOMContentLoaded', function() {
             gallerySwiper.init();
             gallerySwiper.update();
 
+            publicationsSwiper.destroy(true, true);
             publicationsSwiper.update();
-
             publicationsSwiper.off('realIndexChange', publicationsHandler);
-            destroySwiper(publicationsSwiper, '.publications__slider');
              
             document.querySelector('.publications__slider .swiper-wrapper').style.flexWrap = 'wrap';
 

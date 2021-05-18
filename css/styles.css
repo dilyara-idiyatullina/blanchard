@@ -220,6 +220,10 @@ img {
   overflow: hidden;
 }
 
+.nobr {
+  white-space: nowrap;
+}
+
 .paint-info,
 .search-form-mobile,
 .nav-burger,
@@ -1401,7 +1405,7 @@ header {
 
 .events__list {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   width: 100%;
 }
 
@@ -1779,6 +1783,7 @@ input[type=number]::-webkit-outer-spin-button {
   width: 242px;
   min-height: 42px;
   clip-path: polygon(0 0, 100% 0, 100% 85%, 53% 85%, 50% 100%, 47% 85%, 0 85%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 53% 85%, 50% 100%, 47% 85%, 0 85%);
   background: #CACACA;
   color: var(--white-color);
   font-weight: 600;
@@ -1800,12 +1805,14 @@ input[type=number]::-webkit-outer-spin-button {
   right: 20px;
   bottom: 90%;
   clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 85%, 100% 100%, 80% 85%, 0 85%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 85%, 100% 100%, 80% 85%, 0 85%);
 }
 
 .popup--right {
   left: 20px;
   bottom: 90%;
   clip-path: polygon(0 0, 100% 0, 100% 85%, 5% 85%, 0% 100%, 20% 85%, 0 85%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 5% 85%, 0% 100%, 20% 85%, 0 85%);
 }
 
 .marker:hover + .popup,
@@ -2956,6 +2963,10 @@ address {
     margin-bottom: 30px;
   }
 
+  .event__content {
+    padding: 13px 8px 35px 10px;
+  }
+
   .contacts__left-content {
     padding-left: 15px;
   }
@@ -3454,9 +3465,8 @@ address {
   }
 
   .events-pagination {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    justify-content: center;
     width: 110px;
   }
 
